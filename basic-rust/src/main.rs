@@ -148,15 +148,26 @@ fn augmented_assignment() {
 #[test]
 fn boolean_test() {
 
+    // Declare a boolean variable `a` and assign it the value true
     let a = true;
+    // Declare a boolean variable `b` and assign it the value false
     let b = false;
 
+    // Print the values of `a` and `b`
     println!("{} {}", a, b);
 
 }
 
+#[test]
+fn comparison_test() {
 
+    // Declare a variable `result` and assign it the result of the comparison
+    // 10 is greater than or equal to 10
+    let result = 10>=10;
+    // Print the value of `result`
+    println!("{}", result);
 
+}
 
 
 
