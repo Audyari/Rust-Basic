@@ -1,4 +1,3 @@
-use std::any::type_name;
 
 
 /// The main function is the entry point of the Rust program.
@@ -109,6 +108,50 @@ fn tipe_data() {
     // Print the values of `a`, `b`, and `c`
     println!("a: {}, b: {}, c: {}", a, b, c);
 
+}
+
+#[test]
+fn number_operator() {
+    
+    // Declare a variable `a` and assign it an integer value
+    let a = 10;
+    // Declare a variable `b` and assign it an integer value
+    let b = 20;
+    // Perform addition on `a` and `b`, and store the result in `c`
+    let c = a + b;
+
+    // Print the result of the addition
+    println!("{} + {} = {}", a, b, c);
+}
+
+#[test]
+fn augmented_assignment() {
+
+
+    // Declare a mutable variable `a` and assign it an integer value
+    let mut a = 10;
+    // Print the initial value of `a`
+    println!("a: {} ", a);
+
+    // Use the augmented assignment operator `+=` to add 10 to `a`
+    a += 10;
+    // Print the updated value of `a`
+    println!("a: {}", a);
+
+    // Use the augmented assignment operator `-=` to subtract 10 from `a`
+    a -= 10;
+    // Print the updated value of `a`
+    println!("a: {}", a);
+
+    let a = 10; 
 
 
 }
+
+
+
+
+
+
+
+
