@@ -279,3 +279,88 @@ fn unit_test() {
     // Mencetak `test` dengan format yang sesuai.
     println!("{:?}", test);
 }
+
+#[test]
+fn array_test() {
+
+    // Deklarasi array
+    let array1 = [10, 20, 30, 40, 50];
+
+    // Mencetak array
+    println!("{:?}", array1);
+
+    // Mengakses dan mencetak nilai array
+    let a = array1[0];
+    let b = array1[1];
+    let c = array1[2];
+    let d = array1[3];
+    let e = array1[4];
+
+    println!("{} {} {} {} {}", a, b, c, d, e);
+
+}
+
+#[test]
+fn mutable_array(){
+
+    // Deklarasi array yang mutable
+    let mut array1 = [10, 20, 30, 40, 50];
+
+    // Mencetak array
+    println!("{:?}", array1);
+
+    // Mengakses dan mencetak nilai array
+    let a = array1[0];
+    let b = array1[1];
+    let c = array1[2];
+    let d = array1[3];
+    let e = array1[4];
+
+    println!("{} {} {} {} {}", a, b, c, d, e);
+
+    // Mengubah nilai array
+    array1[0] = 100;
+    array1[1] = 200;
+    array1[2] = 300;
+    array1[3] = 400;
+    array1[4] = 500;
+
+    // Mencetak array yang telah diubah
+    println!("{:?}", array1);
+
+    // Mendapatkan panjang array
+    let length = array1.len();
+
+    // Mencetak panjang array
+    println!("Panjang array: {}", length);
+
+}
+
+#[test]
+fn two_dimensional_array(){
+
+    // Declare a 3x3 two-dimensional array `metrix`
+    let metrix = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 9],
+    ];
+
+    // Print the entire array `metrix`
+    println!("{:?}", metrix);
+
+    // Access and assign elements of the array to variables
+    let a = metrix[0][0];
+    let b = metrix[0][1];
+    let c = metrix[0][2];
+    let d = metrix[1][0];
+    let e = metrix[1][1];
+    let f = metrix[1][2];
+    let g = metrix[2][0];
+    let h = metrix[2][1];
+    let i = metrix[2][2];
+
+    // Print the values of the variables
+    println!("{} {} {} {} {} {} {} {} {}", a, b, c, d, e, f, g, h, i);
+
+}
