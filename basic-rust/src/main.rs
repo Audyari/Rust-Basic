@@ -1,5 +1,3 @@
-
-
 /// The main function is the entry point of the Rust program.
 /// cargo run
 fn main() {
@@ -19,24 +17,22 @@ This is a test function for `main`.
  cargo test nama_test_function -- --exact
  cargo test test_main -- --exact --nocapture
  */
- 
+
 #[test]
 fn test_main() {
     // Print a message indicating the test is running
     println!("Audyari Wiyono");
 }
 
-
 //variable
 
 #[test]
 fn variable_test() {
-
     // Declare a variable `name` and assign it a string
     let name: &str = "Audyari Wiyono";
     // Print a greeting message using the `name` variable
     println!("Hello, {}!", name);
-  
+
     // Declare a mutable variable `x` and assign it the value 5
     let mut x = 5;
     // Print a message indicating the value of `x`
@@ -54,12 +50,10 @@ fn variable_test() {
     datanama = "Audyari Wiyono";
     // Print the new value of `datanama`
     println!("data nama updated: {}", datanama);
-
 }
 
 #[test]
 fn variable_test_eror() {
-
     let x = 5;
     // Print the value of `x`
     println!("The value of x is: {}", x);
@@ -71,7 +65,6 @@ fn variable_test_eror() {
 
 #[test]
 fn shadow_test() {
-
     // Declare a variable `nama` and assign it a string
     let nama = "Audyari Wiyono";
     // Print the initial value of `nama`
@@ -82,10 +75,8 @@ fn shadow_test() {
     println!("data nama updated: {}", nama);
 }
 
-
 #[test]
 fn tipe_data() {
-
     // Declare a variable `a` and assign it an integer
     let a = 10;
     // Print the value of `a`
@@ -100,19 +91,17 @@ fn tipe_data() {
 
     // Declare a variable `a` and assign it an integer
     let a = 10;
-    
+
     let b = a as f64;
 
     let c = b as i32;
 
     // Print the values of `a`, `b`, and `c`
     println!("a: {}, b: {}, c: {}", a, b, c);
-
 }
 
 #[test]
 fn number_operator() {
-    
     // Declare a variable `a` and assign it an integer value
     let a = 10;
     // Declare a variable `b` and assign it an integer value
@@ -126,8 +115,6 @@ fn number_operator() {
 
 #[test]
 fn augmented_assignment() {
-
-
     // Declare a mutable variable `a` and assign it an integer value
     let mut a = 10;
     // Print the initial value of `a`
@@ -142,12 +129,10 @@ fn augmented_assignment() {
     a -= 10;
     // Print the updated value of `a`
     println!("a: {}", a);
-
 }
 
 #[test]
 fn boolean_test() {
-
     // Declare a boolean variable `a` and assign it the value true
     let a = true;
     // Declare a boolean variable `b` and assign it the value false
@@ -155,33 +140,29 @@ fn boolean_test() {
 
     // Print the values of `a` and `b`
     println!("{} {}", a, b);
-
 }
 
 #[test]
 fn comparison_test() {
-
     // Declare a variable `result` and assign it the result of the comparison
     // 10 is greater than or equal to 10
-    let result = 10>=10;
+    let result = 10 >= 10;
     // Print the value of `result`
     println!("{}", result);
-
 }
 
 #[test]
 fn boolean_operator() {
-
     // Declare a variable `absen` and assign it an integer value
     let absen = 80;
-    
+
     // Declare a variable `nilai_akhir` and assign it an integer value
     let nilai_akhir = 80;
 
     // Declare a variable `lulus` and assign it a boolean value
     // indicating whether the student is absent or not
     let lulus = absen >= 75;
-    
+
     // Declare a variable `lulus_nilai_akhir` and assign it a boolean value
     // indicating whether the student has a final score greater than or equal to 75
     let lulus_nilai_akhir = nilai_akhir >= 75;
@@ -193,27 +174,22 @@ fn boolean_operator() {
 
     // Print the value of `lulus_final` to the console
     println!("{}", lulus_final);
-
-
 }
 
 #[test]
 fn char_type() {
-
     // Declare a variable `char1` and assign it a string containing the character A
     let char1 = "A";
-    
+
     // Declare a variable `char2` and assign it a char containing the character B
     let char2 = 'B';
 
     // Print the values of `char1` and `char2` to the console
     println!("{} {}", char1, char2);
-
 }
 
 #[test]
 fn tuple_test() {
-    
     // Declare a tuple `tuple1` containing two integers
     let tuple1 = (10, 20.20, true);
 
@@ -236,13 +212,10 @@ fn tuple_test() {
     // Print the values of the variables to the console
     //cara tiga
     println!("{} {} {}", a, b, c);
-
 }
-
 
 #[test]
 fn tuple_mutable() {
-
     let mut tuple1 = (10, 20.20, true);
 
     println!("{:?}", tuple1);
@@ -256,7 +229,6 @@ fn tuple_mutable() {
     tuple1.2 = false;
 
     println!("{:?}", tuple1);
-
 }
 
 // Fungsi yang mengembalikan nilai unit.
@@ -266,7 +238,6 @@ fn unit() -> () {
 
 #[test]
 fn unit_test() {
-
     // Memanggil fungsi unit tanpa mencoba menyimpan hasilnya.
     let result = unit();
 
@@ -275,14 +246,13 @@ fn unit_test() {
 
     // Membuat variabel `test` dan menginisialisasinya dengan nilai unit.
     let test = ();
-    
+
     // Mencetak `test` dengan format yang sesuai.
     println!("{:?}", test);
 }
 
 #[test]
 fn array_test() {
-
     // Deklarasi array
     let array1 = [10, 20, 30, 40, 50];
 
@@ -297,12 +267,10 @@ fn array_test() {
     let e = array1[4];
 
     println!("{} {} {} {} {}", a, b, c, d, e);
-
 }
 
 #[test]
-fn mutable_array(){
-
+fn mutable_array() {
     // Deklarasi array yang mutable
     let mut array1 = [10, 20, 30, 40, 50];
 
@@ -333,18 +301,12 @@ fn mutable_array(){
 
     // Mencetak panjang array
     println!("Panjang array: {}", length);
-
 }
 
 #[test]
-fn two_dimensional_array(){
-
+fn two_dimensional_array() {
     // Declare a 3x3 two-dimensional array `metrix`
-    let metrix = [
-        [1, 2, 3],
-        [4, 5, 6],
-        [7, 8, 9],
-    ];
+    let metrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
 
     // Print the entire array `metrix`
     println!("{:?}", metrix);
@@ -362,5 +324,18 @@ fn two_dimensional_array(){
 
     // Print the values of the variables
     println!("{} {} {} {} {} {} {} {} {}", a, b, c, d, e, f, g, h, i);
+}
 
+
+/// A constant that represents the maximum value of an i32.
+const MAXIMUM: i32 = 10;
+
+/// A test function that demonstrates the use of constants in Rust.
+/// It declares a constant `MINIMUM` and prints the values of two constants, `MAXIMUM` and `MINIMUM`.
+#[test]
+fn constant() {
+    const MINIMUM: i32 = 10;
+
+    // Print the values of the constants
+    println!("{} {}", MAXIMUM, MINIMUM);
 }
