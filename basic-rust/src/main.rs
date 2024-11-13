@@ -143,8 +143,15 @@ fn augmented_assignment() {
     // Print the updated value of `a`
     println!("a: {}", a);
 
-    let a = 10; 
+}
 
+#[test]
+fn boolean_test() {
+
+    let a = true;
+    let b = false;
+
+    println!("{} {}", a, b);
 
 }
 
