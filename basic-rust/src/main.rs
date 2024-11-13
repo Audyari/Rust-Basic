@@ -211,5 +211,71 @@ fn char_type() {
 
 }
 
+#[test]
+fn tuple_test() {
+    
+    // Declare a tuple `tuple1` containing two integers
+    let tuple1 = (10, 20.20, true);
+
+    // Print the values of `tuple1` to the console
+    // cara satu
+    println!("{:?}", tuple1);
+
+    // Extract the values of the tuple and assign them to new variables
+    let datatuple1 = tuple1.0;
+    let datatuple2 = tuple1.1;
+    let datatuple3 = tuple1.2;
+
+    // Print the values of the variables to the console
+    //cara dua
+    println!("{} {} {}", datatuple1, datatuple2, datatuple3);
+
+    // Destructure the tuple and assign the values to new variables
+    let (a, b, c) = tuple1;
+
+    // Print the values of the variables to the console
+    //cara tiga
+    println!("{} {} {}", a, b, c);
+
+}
 
 
+#[test]
+fn tuple_mutable() {
+
+    let mut tuple1 = (10, 20.20, true);
+
+    println!("{:?}", tuple1);
+
+    let (a, b, c) = tuple1;
+
+    println!("{}, {}, {}", a, b, c);
+
+    tuple1.0 = 100;
+    tuple1.1 = 200.20;
+    tuple1.2 = false;
+
+    println!("{:?}", tuple1);
+
+}
+
+// Fungsi yang mengembalikan nilai unit.
+fn unit() -> () {
+    println!("Audyari Wiyono");
+}
+
+#[test]
+fn unit_test() {
+
+    // Memanggil fungsi unit tanpa mencoba menyimpan hasilnya.
+    let result = unit();
+
+    // Mencetak `result` dengan format yang sesuai.
+    println!("{:?}", result);
+
+    // Membuat variabel `test` dan menginisialisasinya dengan nilai unit.
+    let test = ();
+    
+    // Mencetak `test` dengan format yang sesuai.
+    println!("{:?}", test);
+}
