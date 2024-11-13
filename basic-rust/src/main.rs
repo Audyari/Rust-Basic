@@ -169,6 +169,34 @@ fn comparison_test() {
 
 }
 
+#[test]
+fn boolean_operator() {
+
+    // Declare a variable `absen` and assign it an integer value
+    let absen = 80;
+    
+    // Declare a variable `nilai_akhir` and assign it an integer value
+    let nilai_akhir = 80;
+
+    // Declare a variable `lulus` and assign it a boolean value
+    // indicating whether the student is absent or not
+    let lulus = absen >= 75;
+    
+    // Declare a variable `lulus_nilai_akhir` and assign it a boolean value
+    // indicating whether the student has a final score greater than or equal to 75
+    let lulus_nilai_akhir = nilai_akhir >= 75;
+
+    // Declare a variable `lulus_final` and assign it a boolean value
+    // indicating whether the student is able to pass the course
+    // based on the values of `lulus` and `lulus_nilai_akhir`
+    let lulus_final = lulus && lulus_nilai_akhir;
+
+    // Print the value of `lulus_final` to the console
+    println!("{}", lulus_final);
+
+
+}
+
 
 
 
