@@ -1,3 +1,5 @@
+use std::any::type_name;
+
 
 /// The main function is the entry point of the Rust program.
 /// cargo run
@@ -85,8 +87,28 @@ fn shadow_test() {
 #[test]
 fn tipe_data() {
 
-    let angka= 41;
+    // Declare a variable `a` and assign it an integer
+    let a = 10;
+    // Print the value of `a`
+    println!("{}", a);
+
+    // Declare a variable `b` and assign it a floating-point number
+    let b = 10.5;
+    // Print the value of `b`
+    println!("{}", b);
+
+    //number conversion
+
+    // Declare a variable `a` and assign it an integer
+    let a = 10;
     
-    println!("angka: {}", angka);
+    let b = a as f64;
+
+    let c = b as i32;
+
+    // Print the values of `a`, `b`, and `c`
+    println!("a: {}, b: {}, c: {}", a, b, c);
+
+
 
 }
