@@ -197,7 +197,19 @@ fn boolean_operator() {
 
 }
 
+#[test]
+fn char_type() {
 
+    // Declare a variable `char1` and assign it a string containing the character A
+    let char1 = "A";
+    
+    // Declare a variable `char2` and assign it a char containing the character B
+    let char2 = 'B';
+
+    // Print the values of `char1` and `char2` to the console
+    println!("{} {}", char1, char2);
+
+}
 
 
 
