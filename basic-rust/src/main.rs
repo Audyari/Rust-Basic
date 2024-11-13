@@ -12,11 +12,13 @@ fn main() {
     println!("test Pencetaan ke dua");
 }
 
-/// This is a test function for `main`.
-/// The function prints a test message to ensure the `main` function works as expected.
-/// cargo test nama_test_function -- --exact
-/// cargo test test_main -- --exact --nocapture
-
+/*
+This is a test function for `main`.
+ The function prints a test message to ensure the `main` function works as expected.
+ cargo test nama_test_function -- --exact
+ cargo test test_main -- --exact --nocapture
+ */
+ 
 #[test]
 fn test_main() {
     // Print a message indicating the test is running
@@ -77,4 +79,14 @@ fn shadow_test() {
     let nama = "Budi Wiyono";
     // Print the updated value of `nama`
     println!("data nama updated: {}", nama);
+}
+
+
+#[test]
+fn tipe_data() {
+
+    let angka= 41;
+    
+    println!("angka: {}", angka);
+
 }
