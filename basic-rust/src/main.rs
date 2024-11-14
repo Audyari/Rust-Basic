@@ -488,7 +488,7 @@ fn data_copy(){
 
 #[test]
 fn ownership_movement(){
-    
+
     // Create a new String on the heap and assign it to `name1`
     let name1 = String::from("Audyari Wiyono");
     
@@ -499,4 +499,71 @@ fn ownership_movement(){
     // Both strings are accessible and remain unchanged
     println!("{} {}", name2, name1);
 
+}
+
+
+/// Tests for if expressions.
+#[test]
+fn if_expression(){
+
+    let a = 10;
+
+    if a > 5 {
+        // If a is greater than 5, print a message
+        println!("a lebih besar dari 5");
+    } else if a < 5 {
+        // If a is less than 5, print a message
+        println!("a kurang dari atau sama dengan 5");
+    } else if a == 5 {
+        // If a is equal to 5, print a message
+        println!("a sama dengan 5");
+    }
+}
+
+#[test]
+
+fn let_statement(){
+
+    // Declare a variable `value` and assign it an integer value
+    let value = 10;
+
+    // Declare a variable `result` and assign it a string value
+    // based on a condition
+    let result;
+
+    // Check if `value` is greater than 5
+    if value > 5 {
+        // If true, assign the value of `result` to a string
+        // indicating that `value` is greater than 5
+        result = "value lebih besar dari 5";
+    } else {
+        // If false, assign the value of `result` to a string
+        // indicating that `value` is less than or equal to 5
+        result = "value kurang dari atau sama dengan 5";
+    }
+
+    // Print the value of `result` to the console
+    println!("{}", result);
+}
+
+#[test]
+fn if_di_let_statement(){
+    
+    // Declare a variable `a` and assign it an integer value
+    let a = 10;
+
+    // Declare a variable `result` and assign it a string value
+    // based on a condition using an if expression
+    let result = if a > 5 {
+        // If `a` is greater than 5, assign the value of `result`
+        // to a string indicating that `a` is greater than 5
+        "a lebih besar dari 5"
+    } else {
+        // If `a` is less than or equal to 5, assign the value of `result`
+        // to a string indicating that `a` is less than or equal to 5
+        "a kurang dari atau sama dengan 5"
+    };
+
+    // Print the value of `result` to the console
+    println!("{}", result);
 }
