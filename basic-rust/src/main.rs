@@ -422,12 +422,11 @@ fn string_test() {
 
 #[test]
 fn string_test_2() {
-
     // This function demonstrates the use of stack and heap data types in Rust.
     //
     // It creates a mutable `String` on the heap, modifies it, and prints the result.
     // Then, it replaces a part of the string with another value and prints the updated string.
-    
+
     // Create a mutable string on the heap
     let mut name_string = String::from("Audyari Wiyono");
 
@@ -443,13 +442,10 @@ fn string_test_2() {
 
     // Print the updated string
     println!("{}", budi);
-
 }
 
-
 #[test]
-fn ownership_rules(){
-
+fn ownership_rules() {
     // The variable `a` is declared and assigned the value 10.
     // It is valid in the outer scope.
     let a = 10;
@@ -462,7 +458,6 @@ fn ownership_rules(){
         // Print the values of `a` and `b` within the inner scope.
         println!("a is {}", a);
         println!("b is {}", b);
-
     }
 
     // Print the value of `a` again in the outer scope.
@@ -471,8 +466,7 @@ fn ownership_rules(){
 }
 
 #[test]
-fn data_copy(){
-
+fn data_copy() {
     // Declare a variable `a` and assign it the value 10.
     let a = 10;
 
@@ -485,27 +479,22 @@ fn data_copy(){
     println!("{} {}", a, b);
 }
 
-
 #[test]
-fn ownership_movement(){
-
+fn ownership_movement() {
     // Create a new String on the heap and assign it to `name1`
     let name1 = String::from("Audyari Wiyono");
-    
+
     // Clone the value of `name1` and assign it to `name2`
     let name2 = name1.clone();
-    
+
     // Print the values of `name1` and `name2`
     // Both strings are accessible and remain unchanged
     println!("{} {}", name2, name1);
-
 }
-
 
 /// Tests for if expressions.
 #[test]
-fn if_expression(){
-
+fn if_expression() {
     let a = 10;
 
     if a > 5 {
@@ -522,8 +511,7 @@ fn if_expression(){
 
 #[test]
 
-fn let_statement(){
-
+fn let_statement() {
     // Declare a variable `value` and assign it an integer value
     let value = 10;
 
@@ -547,8 +535,7 @@ fn let_statement(){
 }
 
 #[test]
-fn if_di_let_statement(){
-    
+fn if_di_let_statement() {
     // Declare a variable `a` and assign it an integer value
     let a = 10;
 
@@ -566,4 +553,76 @@ fn if_di_let_statement(){
 
     // Print the value of `result` to the console
     println!("{}", result);
+}
+
+#[test]
+fn loop_expression() {
+    let mut counter = 0;
+
+    // Use a loop to print the values of counter from 1 to 10
+    loop {
+        // Increment the value of counter
+        counter += 1;
+
+        // If counter is greater than 10, exit the loop
+        if counter > 10 {
+            break;
+        } else if counter % 2 == 0 {
+            // If counter is even, skip to the next iteration
+            continue;
+        }
+
+        // Print the value of counter
+        println!("{}", counter);
+    }
+}
+
+#[test]
+fn loop_return_value() {
+    let mut counter = 0;
+
+    let result = loop {
+        // Increment the value of counter
+        counter += 1;
+        println!("counter: {}", counter);
+
+        // Exit the loop if counter is greater than 10
+        if counter > 10 {
+            // Return the value of counter
+            break counter * 2; // Return the value of counter multiplied by 2
+        }
+    };
+
+    // Print the result to the console
+    println!("result: {}", result);
+}
+
+#[test]
+fn loop_label() {
+    
+    let mut number = 1;
+
+    // Use a labeled loop to break out of the outer loop
+    'outer: loop {
+        let mut i = 1;
+
+        // Use a nested loop to print the multiplication table
+        loop {
+            if number > 5 {
+                break 'outer;
+            }
+
+            println!("{} x {} = {}", number, i, number * i);
+
+            i += 1;
+
+            // Exit the inner loop if i is greater than 5
+            if i > 5 {
+                break;
+            }
+        }
+
+        // Increment the value of number
+        number += 1;
+    }
 }
