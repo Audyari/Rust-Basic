@@ -53,9 +53,8 @@ fn main() {
 
     println!("{}", full_name);
     println!("{}", first_name);
-    println!("{}",last_name);
+    println!("{}", last_name);
 
-    
     // Declare variables for first name and last name
     let first_name = String::from("Audyari");
 
@@ -920,7 +919,6 @@ fn test_full_name() {
     // println!("{} {}", first_name, last_name);
 }
 
-
 // A function that returns a full name by combining the first and last names
 //
 // This function takes two arguments, `first_name` and `last_name`, and returns a tuple
@@ -930,14 +928,12 @@ fn test_full_name() {
 // returned, so the caller should not attempt to use `first_name` or `last_name` after
 // calling `full_name_dua`.
 fn full_name_dua(first_name: String, last_name: String) -> (String, String, String) {
- 
     // Combine the first and last names into a single string
     let full_name = format!("{} {}", first_name, last_name);
 
     // Return the full name in a tuple
     return (first_name, last_name, full_name);
 }
-
 
 /// Tests the `full_name_dua` function by calling it with sample data
 /// and verifying that the returned tuple contains the correct values.
@@ -956,9 +952,7 @@ fn test_full_name_dua() {
     println!("Last name: {}", last_name);
 }
 
-
 fn full_name_reference(first_name: &String, last_name: &String) -> String {
-   
     // Combine the first and last names into a single string
 
     let full_name = format!("{} {}", first_name, last_name);
@@ -969,7 +963,6 @@ fn full_name_reference(first_name: &String, last_name: &String) -> String {
 
 #[test]
 fn test_full_name_reference() {
-
     // Declare variables for first name and last name
     let first_name = String::from("Audyari");
 
@@ -988,20 +981,16 @@ fn test_full_name_reference() {
 }
 
 fn change_value(value: &mut String) {
-
     // Change the value of `name` to "Budi Wiyono"
     //
     // This function takes a mutable reference to a `String` and changes its value.
     // The function does not return a value, but the value of `name` is changed
     // after the function is called.
     value.push_str(" Budi Wiyono");
-    
 }
 
-#
-[test]
+#[test]
 fn test_change_value() {
-
     // Declare a variable `name` and assign it a string value
 
     let mut value = String::from("Audyari Wiyono");
@@ -1011,8 +1000,6 @@ fn test_change_value() {
     println!("{}", value);
 }
 
-
-
 /// A function that returns a full name by combining the first and last names.
 ///
 /// This function takes two arguments, `first_name` and `last_name`, which are
@@ -1020,15 +1007,12 @@ fn test_change_value() {
 /// two names. The function does not take ownership of `first_name` or `last_name`,
 /// so the caller can continue to use them after calling the function.
 fn solusi_dangling_pointer(first_name: &String, last_name: &String) -> String {
-    
     let name = format!("{} {}", first_name, last_name);
     return name;
-    
 }
 
 #[test]
 fn test_solusi_dangling_pointer() {
-
     // Declare variables for first name and last name
     let first_name = String::from("Audyari");
     let last_name = String::from("Wiyono");
@@ -1039,6 +1023,29 @@ fn test_solusi_dangling_pointer() {
 
     // Print the full name to the console
     println!("{}", name);
-
 }
 
+#[test]
+fn slice_reference() {
+
+    // Create an array of integers
+    let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+    // Create a slice that references the entire array
+    let slice = &array[..];
+
+    // Print the slice to the console
+    println!("{:?}", slice);
+
+    // Create a slice that references the first 5 elements of the array
+    let slice2 = &array[0..5];
+
+    // Print the slice to the console
+    println!("{:?}", slice2);
+
+    // Create a slice that references the last 5 elements of the array
+    let slice3 = &array[5..];
+
+    // Print the slice to the console
+    println!("{:?}", slice3);
+}
