@@ -1,4 +1,3 @@
-
 /// The main function is the entry point of the Rust program.
 /// cargo run
 fn main() {
@@ -17,15 +16,44 @@ fn main() {
 
     function_b();
 
-    println!("{}",MAXIMUM);
+    println!("{}", MAXIMUM);
     unit();
 
     say_goodbye("BUDIONO", "SIREGAR");
 
-    println!("factorial : {}",factorial_loop(5));
+    println!("factorial : {}", factorial_loop(5));
 
     print_text("Audyari Wiyono".to_string(), 3);
 
+    // Declare a variable `number` and assign it the value 10
+    let number = 10;
+    // Call the `print_number` function to print the value of `number`
+    print_number(number);
+
+    // Declare a variable `name` and assign it a string value
+    let name = String::from("Audyari Wiyono");
+    // Call the `hi` function to print the value of `name`
+    hi(name);
+
+    // Declare variables for first name and last name
+    let first_name = String::from("Audyari");
+    let last_name = String::from("Wiyono");
+
+    // Call the `full_name` function to combine the first and last name
+    // and store the result in `full_name`
+    let full_name = full_name(first_name, last_name);
+
+    // Print the full name to the console
+    println!("{}", full_name);
+
+    let first_name = String::from("Audyari");
+    let last_name = String::from("Wiyono");
+
+    let (first_name, last_name, full_name) = full_name_dua(first_name, last_name);
+
+    println!("{}", full_name);
+    println!("{}", first_name);
+    println!("{}",last_name);
 }
 
 /*
@@ -616,7 +644,6 @@ fn loop_return_value() {
 
 #[test]
 fn loop_label() {
-
     let mut number = 1;
 
     // Use a labeled loop to break out of the outer loop
@@ -646,9 +673,8 @@ fn loop_label() {
 
 #[test]
 fn while_loop() {
-    
     let mut counter = 0;
-    
+
     // Use a while loop to print the even numbers from 0 to 10
     while counter < 10 {
         // Check if the current number is even
@@ -661,8 +687,7 @@ fn while_loop() {
 }
 
 #[test]
-fn iterasi_array(){
-
+fn iterasi_array() {
     // Create an array of strings
     let arr_contoh = ["A", "B", "C", "D", "E"];
 
@@ -689,13 +714,11 @@ fn for_loop() {
         // Print the value of the current element
         println!(" Value: {}", element);
     }
-
 }
 
 #[test]
 
-fn range(){
-
+fn range() {
     let array = ["A", "B", "C", "D", "E"];
 
     // Create a range from 0 to 5 (exclusive)
@@ -710,11 +733,10 @@ fn range(){
         // Print the value of the current element
         println!("Value: {}", array[i]);
     }
-} 
+}
 
 #[test]
-fn range_inclusive(){
-
+fn range_inclusive() {
     // Create an array of strings
     let array = ["A", "B", "C", "D", "E"];
 
@@ -731,7 +753,6 @@ fn range_inclusive(){
     }
 }
 
-
 /// Prints a greeting message
 fn say_hello() {
     println!("Hello, Audyari Wiyono!");
@@ -747,32 +768,27 @@ fn test_say_hello() {
 }
 
 /// Prints a goodbye message
-/// 
+///
 /// This function takes two string arguments: `first_name` and `last_name`.
 /// It prints a message to the console that says "Goodbye, [first_name] [last_name]!"
-fn say_goodbye( first_name: &str, last_name: &str) {
-
+fn say_goodbye(first_name: &str, last_name: &str) {
     println!("Goodbye, {} {}!", first_name, last_name);
-
 }
 
 #[test]
 fn test_say_goodbye() {
-
     say_goodbye("Audyari", "Wiyono");
     say_goodbye("Audyari", "Wiyono");
     say_goodbye("Audyari", "Wiyono");
-
 }
 
 /// Calculates the factorial of a number
-/// 
+///
 /// This function takes a single u64 argument: `n`.
 /// It calculates the factorial of `n` using a loop and returns the result.
 fn factorial_loop(n: u64) -> u64 {
-
-    if n < 1{   
-        return 0;    
+    if n < 1 {
+        return 0;
     }
 
     let mut result = 1;
@@ -786,7 +802,6 @@ fn factorial_loop(n: u64) -> u64 {
 
 #[test]
 fn test_factorial_loop() {
-
     // Display the factorial of 5
     println!("Factorial of 5: {}", factorial_loop(5));
 
@@ -801,13 +816,9 @@ fn test_factorial_loop() {
 
     // Display the factorial of 10
     println!("Factorial of 10: {}", hasil);
+}
 
-
-}   
-
-
-fn print_text(value: String,times : u32) {
-
+fn print_text(value: String, times: u32) {
     // Prints the given string a specified number of times
     //
     // This function takes two arguments: `value` and `times`.
@@ -823,20 +834,109 @@ fn print_text(value: String,times : u32) {
     print_text(value, times - 1);
 }
 
-
-
-
 #[test]
 fn test_print_text() {
-
     // This test function calls the `print_text` function to print the given string
     // a specified number of times.
     //
     // It tests the `print_text` function by printing "Audyari Wiyono" three times.
     print_text("Audyari Wiyono".to_string(), 3);
+}
 
-}   
+// Prints a given number to the console
+fn print_number(value: u32) {
+    // Print the given number to the console
+    println!("{}", value);
+}
+
+/// Prints a greeting message to the console
+fn hi(name: String) {
+    // Prints a greeting message using the given name
+    println!("Hello, {}!", name);
+}
+
+#[test]
+fn test_hi() {
+    // Declare a variable `number` and assign it the value 10
+    let number = 10;
+    // Call the `print_number` function to print the value of `number`
+    print_number(number);
+
+    // Declare a variable `name` and assign it a string value
+    let name = String::from("Audyari Wiyono");
+    // Call the `hi` function to print the value of `name`
+    hi(name);
+
+    // The `name` variable is moved into the `hi` function, so it cannot be used again
+    // Uncomment the following line to see an error
+    // println!("{}",name);
+}
+
+// Returns a full name by combining the first and last names
+//
+// This function takes two arguments, `first_name` and `last_name`, and returns a new string
+// that combines them. The function moves the values of `first_name` and `last_name` into its
+// return value, so the caller should not attempt to use `first_name` or `last_name` after calling
+// `full_name`.
+fn full_name(first_name: String, last_name: String) -> String {
+    // Combine the first and last names into a single string
+    let full_name = format!("{} {}", first_name, last_name);
+
+    // Return the full name
+    return full_name;
+}
+
+#[test]
+fn test_full_name() {
+    // Declare variables for first name and last name
+    let first_name = String::from("Audyari");
+    let last_name = String::from("Wiyono");
+
+    // Call the `full_name` function to combine the first and last name
+    // and store the result in `full_name`
+    let full_name = full_name(first_name, last_name);
+
+    // Print the full name to the console
+    println!("{}", full_name);
+
+    // The `first_name` and `last_name` variables are moved into the `full_name` function,
+    // so they cannot be used again.
+    // Uncomment the following line to see an error
+    // println!("{} {}", first_name, last_name);
+}
 
 
+// A function that returns a full name by combining the first and last names
+//
+// This function takes two arguments, `first_name` and `last_name`, and returns a tuple
+// containing the first name, last name, and the full name.
+//
+// The function moves the values of `first_name` and `last_name` into the tuple that is
+// returned, so the caller should not attempt to use `first_name` or `last_name` after
+// calling `full_name_dua`.
+fn full_name_dua(first_name: String, last_name: String) -> (String, String, String) {
+ 
+    // Combine the first and last names into a single string
+    let full_name = format!("{} {}", first_name, last_name);
+
+    // Return the full name in a tuple
+    return (first_name, last_name, full_name);
+}
 
 
+/// Tests the `full_name_dua` function by calling it with sample data
+/// and verifying that the returned tuple contains the correct values.
+#[test]
+fn test_full_name_dua() {
+    // Declare variables for first name and last name
+    let first_name = String::from("Audyari");
+    let last_name = String::from("Wiyono");
+
+    // Call the `full_name_dua` function with the sample data
+    let (first_name, last_name, full_name) = full_name_dua(first_name, last_name);
+
+    // Verify that the returned tuple contains the correct values
+    println!("Full name: {}", full_name);
+    println!("First name: {}", first_name);
+    println!("Last name: {}", last_name);
+}
