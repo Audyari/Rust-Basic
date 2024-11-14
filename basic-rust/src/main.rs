@@ -363,3 +363,44 @@ fn variabel_scope(){
     println!("outer scope : {}", audy);
 
 }
+
+/// A test function that demonstrates the use of stack and heap memory
+/// in Rust. It calls two functions, `function_a` and `function_b`, and prints
+/// the values of two variables, `a` and `b`, in each function.
+#[test]
+fn stack_heap(){
+
+    // Call the first function
+    function_a();
+
+    // Call the second function
+    function_b();
+}
+
+/// A function that demonstrates the use of stack memory
+/// in Rust. It declares two variables, `a` and `b`, and prints their values.
+fn function_a() {
+
+    // Declare a variable `a` and assign it an integer value
+    let a = 1;
+
+    // Declare a variable `b` and assign it a string value
+    let b = "Audyari ";
+
+    // Print the values of `a` and `b`
+    println!("{} {}", a, b);
+}
+
+/// A function that demonstrates the use of heap memory
+/// in Rust. It declares two variables, `a` and `b`, and prints their values.
+fn function_b() {
+
+    // Declare a variable `a` and assign it an integer value
+    let a = 2;
+
+    // Declare a variable `b` and assign it a string value
+    let b = "Wiyono";
+
+    // Print the values of `a` and `b`
+    println!("{} {}", a, b);
+}
