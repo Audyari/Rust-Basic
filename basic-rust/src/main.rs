@@ -326,7 +326,6 @@ fn two_dimensional_array() {
     println!("{} {} {} {} {} {} {} {} {}", a, b, c, d, e, f, g, h, i);
 }
 
-
 /// A constant that represents the maximum value of an i32.
 const MAXIMUM: i32 = 10;
 
@@ -340,12 +339,9 @@ fn constant() {
     println!("{} {}", MAXIMUM, MINIMUM);
 }
 
-
-
 // Variable Scope
 #[test]
-fn variabel_scope(){
-
+fn variabel_scope() {
     // Declare a variable `audy` and assign it an integer value
     let audy = 1;
 
@@ -361,15 +357,13 @@ fn variabel_scope(){
 
     // Print the value of `audy` in the outer scope
     println!("outer scope : {}", audy);
-
 }
 
 /// A test function that demonstrates the use of stack and heap memory
 /// in Rust. It calls two functions, `function_a` and `function_b`, and prints
 /// the values of two variables, `a` and `b`, in each function.
 #[test]
-fn stack_heap(){
-
+fn stack_heap() {
     // Call the first function
     function_a();
 
@@ -380,7 +374,6 @@ fn stack_heap(){
 /// A function that demonstrates the use of stack memory
 /// in Rust. It declares two variables, `a` and `b`, and prints their values.
 fn function_a() {
-
     // Declare a variable `a` and assign it an integer value
     let a = 1;
 
@@ -394,7 +387,6 @@ fn function_a() {
 /// A function that demonstrates the use of heap memory
 /// in Rust. It declares two variables, `a` and `b`, and prints their values.
 fn function_b() {
-
     // Declare a variable `a` and assign it an integer value
     let a = 2;
 
@@ -404,3 +396,53 @@ fn function_b() {
     // Print the values of `a` and `b`
     println!("{} {}", a, b);
 }
+
+#[test]
+fn string_test() {
+    // Declare a variable `name` and assign it a string value
+    let name = " Audyari Wiyono ";
+
+    // Trim the whitespace from the string
+    let edit_name = name.trim();
+
+    // Print the trimmed string
+    println!("{}", edit_name);
+
+    // Declare a mutable variable `nama1` and assign it a string value
+    let mut nama_contoh = String::from("Audyari Wiyono");
+
+    println!("{}", nama_contoh);
+
+    // Reassign the value of `nama1` to a new string
+    nama_contoh = String::from("Budi Wiyono");
+
+    // Print the new value of `nama1`
+    println!("{}", nama_contoh);
+}
+
+#[test]
+fn string_test_2() {
+
+    // This function demonstrates the use of stack and heap data types in Rust.
+    //
+    // It creates a mutable `String` on the heap, modifies it, and prints the result.
+    // Then, it replaces a part of the string with another value and prints the updated string.
+    
+    // Create a mutable string on the heap
+    let mut name_string = String::from("Audyari Wiyono");
+
+    // Append a string slice to the existing string
+    name_string.push_str(" Wiyono");
+
+    // Print the modified string
+    println!("{}", name_string);
+    println!("");
+
+    // Replace part of the string and store the result in a new variable
+    let budi = name_string.replace("Audyari", "Budi");
+
+    // Print the updated string
+    println!("{}", budi);
+
+}
+
