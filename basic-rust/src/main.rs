@@ -1027,7 +1027,6 @@ fn test_solusi_dangling_pointer() {
 
 #[test]
 fn slice_reference() {
-
     // Create an array of integers
     let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -1048,4 +1047,24 @@ fn slice_reference() {
 
     // Print the slice to the console
     println!("{:?}", slice3);
+}
+
+#[test]
+fn string_slice() {
+    // This function demonstrates how to create string slices from a `String`
+    // and print the slices to the console.
+
+    let name = String::from("Audyari Wiyono");
+
+    // Create a slice for the first name using the first three characters
+    let first_name = &name[0..3];
+
+    // Print the first name slice
+    println!("{}", first_name);
+
+    // Create a slice for the last name using the characters from index 4 onward
+    let last_name = &name[4..];
+
+    // Print the last name slice
+    println!("{}", last_name);
 }
