@@ -339,3 +339,27 @@ fn constant() {
     // Print the values of the constants
     println!("{} {}", MAXIMUM, MINIMUM);
 }
+
+
+
+// Variable Scope
+#[test]
+fn variabel_scope(){
+
+    // Declare a variable `audy` and assign it an integer value
+    let audy = 1;
+
+    {
+        // Print the value of `audy` in the inner scope
+        println!("inner scope : {}", audy);
+
+        // Declare a variable `wiyono` and assign it an integer value
+        let wiyono = 2;
+        // Print the value of `wiyono` in the inner scope
+        println!("inner scope : {} ", wiyono);
+    }
+
+    // Print the value of `audy` in the outer scope
+    println!("outer scope : {}", audy);
+
+}
