@@ -1,3 +1,4 @@
+
 /// The main function is the entry point of the Rust program.
 /// cargo run
 fn main() {
@@ -632,12 +633,85 @@ fn while_loop() {
     
     let mut counter = 0;
     
+    // Use a while loop to print the even numbers from 0 to 10
     while counter < 10 {
-
+        // Check if the current number is even
         if counter % 2 == 0 {
             println!("counter: {}", counter);
         }
+        // Increment the counter
         counter += 1;
-        
     }
 }
+
+#[test]
+fn iterasi_array(){
+
+    // Create an array of strings
+    let arr_contoh = ["A", "B", "C", "D", "E"];
+
+    // Initialize a variable to keep track of the index
+    let mut index_arry = 0;
+
+    // Use a while loop to iterate through the array
+    while index_arry < arr_contoh.len() {
+        // Print the value of the current element
+        println!(" Value: {}", arr_contoh[index_arry]);
+
+        // Increment the index
+        index_arry += 1;
+    }
+}
+
+#[test]
+fn for_loop() {
+    // Create an array of strings
+    let arr_contoh = ["A", "B", "C", "D", "E"];
+
+    // Use a for loop to iterate through the array
+    for element in arr_contoh {
+        // Print the value of the current element
+        println!(" Value: {}", element);
+    }
+
+}
+
+#[test]
+
+fn range(){
+
+    let array = ["A", "B", "C", "D", "E"];
+
+    // Create a range from 0 to 5 (exclusive)
+    let range = 0..5;
+
+    // Print the start and end values of the range
+    println!("Start : {}", range.start);
+    println!("End : {}", range.end);
+
+    // Iterate through the range and print the values
+    for i in range {
+        // Print the value of the current element
+        println!("Value: {}", array[i]);
+    }
+} 
+
+#[test]
+fn range_inclusive(){
+
+    // Create an array of strings
+    let array = ["A", "B", "C", "D", "E"];
+
+    // Create a range that is inclusive of the end value
+    let range = 0..=4;
+
+    // Print the start and end values of the range
+    println!("Start : {}", range.start());
+    println!("End : {}", range.end());
+
+    // Iterate through the range and print the values
+    for i in range {
+        println!("Value: {}", array[i]);
+    }
+}
+
