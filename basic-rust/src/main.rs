@@ -1068,3 +1068,42 @@ fn string_slice() {
     // Print the last name slice
     println!("{}", last_name);
 }
+
+struct Person {
+    /// The full name of the person.
+    name: String,
+    /// The first name of the person.
+    first_name: String,
+    /// The last name of the person.
+    last_name: String,
+    /// The age of the person.
+    age: u32,
+}
+
+/// A function that prints the details of a person.
+///
+
+fn print_person(person: &Person) {
+    println!("Full Name: {}", person.name);
+    println!("First Name: {}", person.first_name);
+    println!("Last Name: {}", person.last_name);
+    println!("Age: {}", person.age);
+}
+
+/// A test function that creates a new instance of the `Person` struct and prints its details.
+#[test]
+fn struct_person() {
+    // Create a new instance of the `Person` struct
+    let person = Person {
+        // The full name of the person.
+        name: String::from("Audyari Wiyono"),
+        // The first name of the person.
+        first_name: String::from("Audyari"),
+        // The last name of the person.
+        last_name: String::from("Wiyono"),
+        // The age of the person.
+        age: 20,
+    };
+
+    print_person(&person);
+}
