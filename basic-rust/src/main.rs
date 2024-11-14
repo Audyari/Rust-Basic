@@ -54,6 +54,21 @@ fn main() {
     println!("{}", full_name);
     println!("{}", first_name);
     println!("{}",last_name);
+
+    
+    // Declare variables for first name and last name
+    let first_name = String::from("Audyari");
+
+    let last_name = String::from("Wiyono");
+
+    // Call the `full_name_reference` function to combine the first and last name
+    // and store the result in `full_name`
+    let full_name = full_name_reference(&first_name, &last_name);
+
+    // Print the full name to the console
+    println!("{}", full_name);
+
+    println!("{} {}", first_name, last_name);
 }
 
 /*
@@ -940,3 +955,90 @@ fn test_full_name_dua() {
     println!("First name: {}", first_name);
     println!("Last name: {}", last_name);
 }
+
+
+fn full_name_reference(first_name: &String, last_name: &String) -> String {
+   
+    // Combine the first and last names into a single string
+
+    let full_name = format!("{} {}", first_name, last_name);
+
+    // Return the full name
+    return full_name;
+}
+
+#[test]
+fn test_full_name_reference() {
+
+    // Declare variables for first name and last name
+    let first_name = String::from("Audyari");
+
+    let last_name = String::from("Wiyono");
+
+    // Call the `full_name_reference` function to combine the first and last name
+    // and store the result in `full_name`
+    let full_name = full_name_reference(&first_name, &last_name);
+
+    // Print the full name to the console
+    println!("{}", full_name);
+
+    // `first_name` and `last_name` are not moved into the `full_name_reference` function,
+    // so we can use them again after calling the function
+    println!("{} {}", first_name, last_name);
+}
+
+fn change_value(value: &mut String) {
+
+    // Change the value of `name` to "Budi Wiyono"
+    //
+    // This function takes a mutable reference to a `String` and changes its value.
+    // The function does not return a value, but the value of `name` is changed
+    // after the function is called.
+    value.push_str(" Budi Wiyono");
+    
+}
+
+#
+[test]
+fn test_change_value() {
+
+    // Declare a variable `name` and assign it a string value
+
+    let mut value = String::from("Audyari Wiyono");
+    // Call the `change_value` function to change the value of `name`
+    change_value(&mut value);
+    // Print the value of `name` to verify that it has been changed
+    println!("{}", value);
+}
+
+
+
+/// A function that returns a full name by combining the first and last names.
+///
+/// This function takes two arguments, `first_name` and `last_name`, which are
+/// references to `String`s. The function returns a new `String` that combines the
+/// two names. The function does not take ownership of `first_name` or `last_name`,
+/// so the caller can continue to use them after calling the function.
+fn solusi_dangling_pointer(first_name: &String, last_name: &String) -> String {
+    
+    let name = format!("{} {}", first_name, last_name);
+    return name;
+    
+}
+
+#[test]
+fn test_solusi_dangling_pointer() {
+
+    // Declare variables for first name and last name
+    let first_name = String::from("Audyari");
+    let last_name = String::from("Wiyono");
+
+    // Call the `solusi_dangling_pointer` function with references to first and last name
+    // Store the result in `name`
+    let name = solusi_dangling_pointer(&first_name, &last_name);
+
+    // Print the full name to the console
+    println!("{}", name);
+
+}
+
