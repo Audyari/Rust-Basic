@@ -599,7 +599,7 @@ fn loop_return_value() {
 
 #[test]
 fn loop_label() {
-    
+
     let mut number = 1;
 
     // Use a labeled loop to break out of the outer loop
@@ -624,5 +624,20 @@ fn loop_label() {
 
         // Increment the value of number
         number += 1;
+    }
+}
+
+#[test]
+fn while_loop() {
+    
+    let mut counter = 0;
+    
+    while counter < 10 {
+
+        if counter % 2 == 0 {
+            println!("counter: {}", counter);
+        }
+        counter += 1;
+        
     }
 }
