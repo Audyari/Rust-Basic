@@ -446,3 +446,57 @@ fn string_test_2() {
 
 }
 
+
+#[test]
+fn ownership_rules(){
+
+    // The variable `a` is declared and assigned the value 10.
+    // It is valid in the outer scope.
+    let a = 10;
+
+    {
+        // The variable `b` is declared and assigned the value 20.
+        // It is valid within the inner scope.
+        let b = 20;
+
+        // Print the values of `a` and `b` within the inner scope.
+        println!("a is {}", a);
+        println!("b is {}", b);
+
+    }
+
+    // Print the value of `a` again in the outer scope.
+    // The variable `b` is no longer valid here.
+    println!("a is {}", a);
+}
+
+#[test]
+fn data_copy(){
+
+    // Declare a variable `a` and assign it the value 10.
+    let a = 10;
+
+    // Declare a variable `b` and assign it the value of `a`.
+    // This creates a copy of the value of `a`.
+    let b = a;
+
+    // Print the values of `a` and `b`.
+    // The output will be "10 10".
+    println!("{} {}", a, b);
+}
+
+
+#[test]
+fn ownership_movement(){
+    
+    // Create a new String on the heap and assign it to `name1`
+    let name1 = String::from("Audyari Wiyono");
+    
+    // Clone the value of `name1` and assign it to `name2`
+    let name2 = name1.clone();
+    
+    // Print the values of `name1` and `name2`
+    // Both strings are accessible and remain unchanged
+    println!("{} {}", name2, name1);
+
+}
