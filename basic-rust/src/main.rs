@@ -10,6 +10,22 @@ fn main() {
 
     // Print a second test message
     println!("test Pencetaan ke dua");
+
+    say_hello();
+
+    function_a();
+
+    function_b();
+
+    println!("{}",MAXIMUM);
+    unit();
+
+    say_goodbye("BUDIONO", "SIREGAR");
+
+    println!("factorial : {}",factorial_loop(5));
+
+    print_text("Audyari Wiyono".to_string(), 3);
+
 }
 
 /*
@@ -714,4 +730,113 @@ fn range_inclusive(){
         println!("Value: {}", array[i]);
     }
 }
+
+
+/// Prints a greeting message
+fn say_hello() {
+    println!("Hello, Audyari Wiyono!");
+}
+
+/// A test function that calls the `say_hello` function three times
+#[test]
+fn test_say_hello() {
+    // Call the `say_hello` function three times
+    say_hello();
+    say_hello();
+    say_hello();
+}
+
+/// Prints a goodbye message
+/// 
+/// This function takes two string arguments: `first_name` and `last_name`.
+/// It prints a message to the console that says "Goodbye, [first_name] [last_name]!"
+fn say_goodbye( first_name: &str, last_name: &str) {
+
+    println!("Goodbye, {} {}!", first_name, last_name);
+
+}
+
+#[test]
+fn test_say_goodbye() {
+
+    say_goodbye("Audyari", "Wiyono");
+    say_goodbye("Audyari", "Wiyono");
+    say_goodbye("Audyari", "Wiyono");
+
+}
+
+/// Calculates the factorial of a number
+/// 
+/// This function takes a single u64 argument: `n`.
+/// It calculates the factorial of `n` using a loop and returns the result.
+fn factorial_loop(n: u64) -> u64 {
+
+    if n < 1{   
+        return 0;    
+    }
+
+    let mut result = 1;
+
+    for i in 1..=n {
+        result *= i;
+    }
+
+    return result;
+}
+
+#[test]
+fn test_factorial_loop() {
+
+    // Display the factorial of 5
+    println!("Factorial of 5: {}", factorial_loop(5));
+
+    // Display the factorial of 6
+    println!("Factorial of 6: {}", factorial_loop(6));
+
+    // Display the factorial of 7
+    println!("Factorial of 7: {}", factorial_loop(7));
+
+    // Calculate the factorial of 10 and store it in `hasil`
+    let hasil = factorial_loop(10);
+
+    // Display the factorial of 10
+    println!("Factorial of 10: {}", hasil);
+
+
+}   
+
+
+fn print_text(value: String,times : u32) {
+
+    // Prints the given string a specified number of times
+    //
+    // This function takes two arguments: `value` and `times`.
+    // `value` is the string to be printed, and `times` is the number of times to print it.
+    // The function prints the string `times` times, and then returns.
+    if times == 0 {
+        return;
+    } else {
+        println!("{}", value);
+    }
+
+    // Recursively call the `print_text` function to print the string `times - 1` more times
+    print_text(value, times - 1);
+}
+
+
+
+
+#[test]
+fn test_print_text() {
+
+    // This test function calls the `print_text` function to print the given string
+    // a specified number of times.
+    //
+    // It tests the `print_text` function by printing "Audyari Wiyono" three times.
+    print_text("Audyari Wiyono".to_string(), 3);
+
+}   
+
+
+
 
