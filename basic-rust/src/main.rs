@@ -68,6 +68,85 @@ fn main() {
     println!("{}", full_name);
 
     println!("{} {}", first_name, last_name);
+
+    // Declare a variable `name` and assign it a string value
+
+    let mut value = String::from("Audyari Wiyono");
+    // Call the `change_value` function to change the value of `name`
+    change_value(&mut value);
+    // Print the value of `name` to verify that it has been changed
+    println!("{}", value);
+
+    // Declare variables for first name and last name
+    let first_name = String::from("Audyari");
+    let last_name = String::from("Wiyono");
+
+    // Call the `solusi_dangling_pointer` function with references to first and last name
+    // Store the result in `name`
+    let name = solusi_dangling_pointer(&first_name, &last_name);
+
+    // Print the full name to the console
+    println!("{}", name);
+
+    // The first name of the person.
+    let first_name = String::from("Audyari");
+
+    // The last name of the person.
+    let last_name = String::from("Wiyono");
+
+    // Create a new instance of the `Person` struct
+    let person = Person {
+        // The full name of the person.
+        name: String::from("Audyari Wiyono"),
+        // The first name of the person.
+        first_name,
+        // The last name of the person.
+        last_name,
+        // The age of the person.
+        age: 20,
+    };
+
+    println!("Full Name: {}", person.name);
+    println!("First Name: {}", person.first_name);
+
+    // Print the details of the person using the `print_person` function
+    println!("=======================================");
+
+    print_person(&person);
+
+    // Create a new instance of the `Person` struct by cloning the fields of the first person
+    let person2 = Person {
+        first_name: person.first_name.clone(),
+        last_name: person.last_name.clone(),
+        name: person.name.clone(),
+        age: person.age,
+        ..person
+    };
+
+    println!("======================================");
+
+    print_person(&person2);
+
+    println!("======================================");
+
+    // Print the fields of the first person to show that they are still accessible
+    println!("{}", person.first_name);
+    println!("{}", person.age);
+
+    // Create a new instance of `GeoPoint` with latitude and longitude
+    let point = GeoPoint(-6.200000, 106.8166666);
+
+    // Print the latitude of the point
+    println!("{}", point.0);
+
+    // Print the longitude of the point
+    println!("{}", point.1);
+
+       // Create a new instance of `Nothing`
+       let _nothing = Nothing;
+
+       // Create another instance of `Nothing` using the unit-like syntax
+       let _nothing2 = Nothing{};
 }
 
 /*
@@ -1093,17 +1172,79 @@ fn print_person(person: &Person) {
 /// A test function that creates a new instance of the `Person` struct and prints its details.
 #[test]
 fn struct_person() {
+    // The first name of the person.
+    let first_name = String::from("Audyari");
+
+    // The last name of the person.
+    let last_name = String::from("Wiyono");
+
     // Create a new instance of the `Person` struct
     let person = Person {
         // The full name of the person.
         name: String::from("Audyari Wiyono"),
         // The first name of the person.
-        first_name: String::from("Audyari"),
+        first_name,
         // The last name of the person.
-        last_name: String::from("Wiyono"),
+        last_name,
         // The age of the person.
         age: 20,
     };
 
+    println!("Full Name: {}", person.name);
+    println!("First Name: {}", person.first_name);
+
+    // Print the details of the person using the `print_person` function
+    println!("=======================================");
+
     print_person(&person);
+
+    // Create a new instance of the `Person` struct by cloning the fields of the first person
+    let person2 = Person {
+        first_name: person.first_name.clone(),
+        last_name: person.last_name.clone(),
+        name: person.name.clone(),
+        age: person.age,
+        ..person
+    };
+
+    println!("======================================");
+
+    print_person(&person2);
+
+    println!("======================================");
+
+    // Print the fields of the first person to show that they are still accessible
+    println!("{}", person.first_name);
+    println!("{}", person.age);
+}
+
+/// A struct representing a geographical point with latitude and longitude.
+struct GeoPoint(f64, f64);
+
+/// A test function for the `GeoPoint` struct.
+#[test]
+fn struct_geo_point() {
+    // Create a new instance of `GeoPoint` with latitude and longitude
+    let point = GeoPoint(-6.200000, 106.8166666);
+
+    // Print the latitude of the point
+    println!("{}", point.0);
+
+    // Print the longitude of the point
+    println!("{}", point.1);
+}
+
+/// A struct with no fields, known as a "unit-like" struct.
+///
+/// This struct can be used to represent the absence of a value.
+struct Nothing;
+
+/// A test function for the `Nothing` struct.
+#[test]
+fn struct_nothing() {
+    // Create a new instance of `Nothing`
+    let _nothing = Nothing;
+
+    // Create another instance of `Nothing` using the unit-like syntax
+    let _nothing2 = Nothing{};
 }
