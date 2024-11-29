@@ -1,6 +1,7 @@
 mod first;
 mod second;
 mod model;
+mod third;
 
 use first::say_hello as modul_first;
 use second::say_hello as modul_second;
@@ -25,6 +26,8 @@ fn main() {
 
     modul_first();
     modul_second();
+
+    first::second::third::say_hello();
 }
 
 
