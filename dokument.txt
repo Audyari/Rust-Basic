@@ -1,0 +1,26 @@
+
+1. Menginstall Rust di Windows 
+
+    download dari 
+    https://www.rust-lang.org/tools/install
+
+    rustup check
+    rustup --version
+    rustup update stable
+
+2. membuat project baru
+
+    cargo --version
+    cargo new nama-project
+
+3. Menggunakan Cargo
+
+    cargo run
+    cargo build --release
+
+4. Menjalankan Unit Test
+
+    cargo test
+    cargo test nama_test -- --exact 
+    cargo test nama_test -- --exact --nocapture
+

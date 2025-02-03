@@ -1,1 +1,0 @@
-D:\RUST\Rust-Basic\basic-rust\target\debug\basic-rust.exe: D:\RUST\Rust-Basic\basic-rust\src\first.rs D:\RUST\Rust-Basic\basic-rust\src\main.rs D:\RUST\Rust-Basic\basic-rust\src\model.rs D:\RUST\Rust-Basic\basic-rust\src\second.rs D:\RUST\Rust-Basic\basic-rust\src\third.rs
