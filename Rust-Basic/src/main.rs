@@ -393,3 +393,54 @@ fn test_string_type_heap(){
    println!("ubah = {}", ubah);
 
 }
+
+#[test]
+fn test_ownership_rules() {
+
+   //a tidak bisa diskses disini, belun dideklarasikan 
+   let a = 10; // a bisa diakses mulai disini 
+   
+   {// b tidak bisa diskses disini, helun dideKlarasikan 
+      let b = 20; // b bisa diakses mulai disini |
+      println!("{}", b); 
+   
+   } // scope b selesai, b dihapus, b tidak bisa diakses lagi 
+     
+   println! ("{}", a); 
+   
+} // scope a selesai, a dihapus, a tidak bisa diskses lagi 
+   
+
+// cargo test test_data_copy -- --exact --nocapture
+#[test]
+fn test_data_copy() {
+   
+   let a = 10;
+   let b = a; // copy data a ke b 
+   println!("a = {}, b = {}", a, b);
+
+}
+
+// cargo test test_ownership_movement -- --exact --nocapture
+#[test]
+fn test_ownership_movement() {
+
+   let name1 = String::from("Audyari");
+
+   // ownership dari name1 di pindahkan ke name2
+   let name2 = name1;
+
+   // name1 tidak bisa diakses lagi
+   println!("name2 = {}", name2);
+   
+}
+
+#[test]
+fn test_ownership_clone() {
+   
+   let name1 = String::from("Audyari");
+   let name2 = name1.clone();
+   
+   println!("name1 = {}, name2 = {}", name1, name2);
+   
+}
