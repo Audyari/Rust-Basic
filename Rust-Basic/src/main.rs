@@ -4,6 +4,11 @@ fn main() {
     println!("Hello, world!");
     println!("Hello, Audy!");
     println!("Hello, Wira!");
+
+    // mengakses tuple kosong
+
+    let result = unit();
+    println!("result = {:?}", result);
 }
 
 #[test]
@@ -208,4 +213,85 @@ fn test_mutable_tuple() {
    data.2 = false;
    println!("data = {:?}", data);
 
+}
+
+fn unit(){
+   println!("Hello, world!");
+}
+
+#[test]
+fn test_unit() {
+   // tuple kosong
+  let result = unit();
+  println!("result = {:?}", result);
+
+  let test =();
+  println!("test = {:?}", test);
+}
+
+#[test]
+fn test_array() {
+   // Membuat Array
+
+   let array: [i32; 5] = [1, 2, 3, 4, 5];
+   println!("array = {:?}", array);  
+
+   // Mengakses Array
+
+   let a = array[0];
+   println!("a = {}", a);
+
+   let b = array[1];
+   println!("b = {}", b);
+
+   let c = array[2];
+   println!("c = {}", c);
+
+   let d = array[3];
+   println!("d = {}", d);
+
+   let e = array[4];
+   println!("e = {}", e);
+
+
+}
+
+// cargo test test_array_mutable -- --exact --nocapture
+#[test]
+fn test_array_mutable() {
+   
+   // Mutable Array
+   let mut array: [i32; 5] = [1, 2, 3, 4, 5];
+   println!("array = {:?}", array);
+
+   array[0] = 10;
+   array[1] = 20;
+   array[2] = 30;
+   array[3] = 40;
+   array[4] = 50;
+   println!("array = {:?}", array);
+}
+
+#[test]
+fn test_array_length() {
+   // Panjang Array
+  
+  let array: [i32; 5] = [1, 2, 3, 4, 5];
+  println!("array = {:?}", array);
+
+  let length = array.len();
+  println!("length = {}", length);
+}
+
+
+#[test]
+fn test_two_dimensional_array() {
+   // Two Dimensional Array
+
+   let array: [[i32; 2]; 3] = [
+      [1, 2],
+      [3, 4],
+      [5, 6],
+   ];
+   println!("array = {:?}", array);
 }
