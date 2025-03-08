@@ -9,6 +9,10 @@ fn main() {
 
     let result = unit();
     println!("result = {:?}", result);
+
+    // Stack dan Heap
+    function_a();
+    function_b();
 }
 
 #[test]
@@ -294,4 +298,98 @@ fn test_two_dimensional_array() {
       [5, 6],
    ];
    println!("array = {:?}", array);
+
+   let a = array[0][0];
+   println!("a = {}", a);
+
+   let b = array[0][1];
+   println!("b = {}", b);
+
+   let c = array[1][0];
+   println!("c = {}", c);
+
+   let d = array[1][1];
+   println!("d = {}", d);
+
+   let e = array[2][0];
+   println!("e = {}", e);
+
+   let f = array[2][1];
+   println!("f = {}", f);
+}  
+
+// cargo test test_constant -- --exact --nocapture
+#[test]
+fn test_constant() {
+   // constant
+   const MAX_VALUE: i32 = 100;
+   const MIN_VALUE: i32 = 0;
+   println!("MAX_VALUE = {}", MAX_VALUE);
+   println!("MIN_VALUE = {}", MIN_VALUE);
+}
+
+// cargo test test_variable_scope -- --exact --nocapture
+#[test]
+fn test_variable_scope() {
+   // Variable Scope
+   let  audy = 1;
+   {
+      println!("audy = {}", audy);
+      let wiyono = 2;
+      println!("wiyono = {}", wiyono);
+   }
+   println!("audy = {}", audy);
+}
+
+#[test]
+fn test_stack_dan_heap() {
+
+   // Stack dan Heap
+   function_a();
+   function_b();
+
+}
+
+fn function_a() {
+   let a = 10;
+   let b = String::from("Hello");
+   println!("a = {}, b = {}", a, b);
+}
+
+fn function_b() {
+   let a = 20;
+   let b = String::from("World");
+   println!("a = {}, b = {}", a, b);
+}
+
+// cargo test test_string -- --exact --nocapture
+#[test]
+fn test_string_stack(){
+   let mut name = " Audyari Wiyono ";
+   println!("name = {}", name);
+
+   name = "Audyari";
+   println!("name = {}", name);
+
+   // trim adalah menghapus whitespace
+   let trim: &str = name.trim();
+   println!("trim = {}", trim);
+
+   let len: usize = name.len();
+   println!("len = {}", len);
+}
+
+// cargo test test_string_type -- --exact --nocapture
+#[test]
+fn test_string_type_heap(){
+   // String Type
+   let mut name = String::from("Audyari");
+   println!("name = {}", name);
+
+   name.push_str(" Wiyono");
+   println!("name = {}", name);
+
+   let ubah = name.replace("Audyari", "Asep");
+   println!("ubah = {}", ubah);
+
 }
