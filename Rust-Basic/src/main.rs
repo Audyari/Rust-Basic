@@ -55,6 +55,7 @@ fn test_number() {
    println!("b = {}", b);
 }
 
+// cargo test test_konversi_tipe_data_number -- --exact --nocapture
 #[test]
 fn test_konversi_tipe_data_number() {
    // Konversi Tipe Data Number
@@ -77,6 +78,7 @@ fn test_konversi_tipe_data_number() {
    println!("g = {}", g);
 }
 
+// cargo test test_numeric_operations -- --exact --nocapture
 #[test]
 fn test_numeric_operations() {
    // Numeric Operations
@@ -89,6 +91,7 @@ fn test_numeric_operations() {
    println!("d = {}", d);
 }
 
+// cargo test test_augmented_assignments -- --exact --nocapture
 #[test]
 fn test_augmented_assignments() {
    // Augmented Assignments
@@ -97,6 +100,7 @@ fn test_augmented_assignments() {
    println!("a = {}", a);
 }
 
+// cargo test test_boolean -- --exact --nocapture
 #[test]
 fn test_boolean() {
    // Boolean
@@ -105,6 +109,7 @@ fn test_boolean() {
 
 }
 
+// cargo test test_comparison_operators -- --exact --nocapture
 #[test]
 fn test_comparison_operators() {
    // Comparison-Operators
@@ -122,6 +127,7 @@ fn test_comparison_operators() {
 
 }
 
+// cargo test test_boolean_operators -- --exact --nocapture
 #[test]
 fn test_boolean_operators() {
    // Boolean-Operators
@@ -135,15 +141,16 @@ fn test_boolean_operators() {
    let c : bool = !true;
    println!("c = {}", c);
 
-   let absen = 70;
-   let nilai_akhir =  800;
+   let absen: i32 = 75;
+   let nilai_akhir: i32 =  80;
 
-   let lulus = absen > 75 && nilai_akhir > 700;
+   let lulus = absen >= 75 && nilai_akhir >= 75;
 
    println!("Hasil lulus = {}", lulus);
    
 }
 
+// cargo test test_char -- --exact --nocapture
 #[test]
 fn test_char() {
    // Char
@@ -157,20 +164,23 @@ fn test_char() {
    
 }
 
+// cargo test test_tuple -- --exact --nocapture
 #[test]
 fn test_tuple() {
-   // Tuple
-   let a : (i8, i8) = (10, 20);
-   println!("a = {}, {}", a.0, a.1);
 
-   let b : (u8, char) = (10, 'a');
-   println!("b = {}, {}", b.0, b.1);
+   // tuple
 
-   let c : (String, bool) = (String::from("Hello"), true);
-   println!("c = {:?}, {}", c.0, c.1);
+   let data: (i32, i32, bool) = (10, 20, true); 
+   println!("data = {:?}", data);
 
-   let d : (String, u8, bool) = (String::from("Hello"), 10, true);
-   println!("d = {:?}, {}, {}", d.0, d.1, d.2);
+   // Mengakses Tuple
+
+   let a = data.0;
+   let b = data.1;
+   let c = data.2;
+
+   println!("a = {}, b = {}, c = {}", a, b, c);
+
 }
 
 #[test]
@@ -184,6 +194,7 @@ fn test_destructuring_tuple() {
    println!("a = {}, c = {}", a, c);
 }
 
+// cargo test test_mutable_tuple -- --exact --nocapture
 #[test]
 fn test_mutable_tuple() {
    // Mutable Tuple
