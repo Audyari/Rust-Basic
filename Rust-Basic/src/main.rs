@@ -141,6 +141,60 @@ fn main() {
     let geo_point = GeoPoint::new(-6.200000,106.816666);
     println!("{} {}", geo_point.0, geo_point.1);
 
+    // mengakses enum
+
+    let level1 = Level::Regular;
+  
+   match level1 {
+      Level::Regular => println!("Regular"),
+      Level::Premium => println!("Premium"),
+      Level::Platinum => println!("Platinum"),
+   }
+
+   let level2 = Level::Premium;
+   match level2 {
+      Level::Regular => println!("Regular"),
+      Level::Premium => println!("Premium"),
+      Level::Platinum => println!("Platinum"),
+   }
+
+   let level3 = Level::Platinum;
+   match level3 {
+      Level::Regular => println!("Regular"),
+      Level::Premium => println!("Premium"),
+      Level::Platinum => println!("Platinum"),
+   }
+
+    // penganggilan enum payment
+
+    let payment1 = Payment::CreditCard(String::from("1234567890"));
+
+    match payment1 {
+       Payment::CreditCard(card_number) => println!("Credit Card: {}", card_number),
+       Payment::BankTransfer(bank_name, account_number) => println!("Bank Transfer: {} {}", bank_name, account_number),
+       Payment::EWallet(ewallet_number, ewallet_name) => println!("eWallet: {} {}", ewallet_number, ewallet_name),
+    }
+ 
+    let payment2 = Payment::BankTransfer(String::from("Bank BRI"), String::from("1234567890"));
+    match payment2 {
+       Payment::CreditCard(card_number) => println!("Credit Card: {}", card_number),
+       Payment::BankTransfer(bank_name, account_number) => println!("Bank Transfer: {} {}", bank_name, account_number),
+       Payment::EWallet(ewallet_number, ewallet_name) => println!("eWallet: {} {}", ewallet_number, ewallet_name),
+    }
+ 
+    let payment3 = Payment::EWallet(String::from("1234567890"), String::from("eWallet"));
+    match payment3 {
+       Payment::CreditCard(card_number) => println!("Credit Card: {}", card_number),
+       Payment::BankTransfer(bank_name, account_number) => println!("Bank Transfer: {} {}", bank_name, account_number),
+       Payment::EWallet(ewallet_number, ewallet_name) => println!("eWallet: {} {}", ewallet_number, ewallet_name),
+    }
+
+    // memanggil impl Pay
+
+    let payment1 = Payment::CreditCard(String::from("1234567890"));
+    payment1.pay(1000);
+    
+
 }
 
 #[test]  
@@ -1101,4 +1155,254 @@ impl GeoPoint {
 fn test_geo_point() {
    let geo_point = GeoPoint::new(-6.200000,106.816666);
    println!("{} {}", geo_point.0, geo_point.1);
+}
+
+
+enum Level {
+  Regular,
+  Premium,
+  Platinum,
+}
+
+#[test]
+fn test_level() {
+   let level1 = Level::Regular;
+  
+   match level1 {
+      Level::Regular => println!("Regular"),
+      Level::Premium => println!("Premium"),
+      Level::Platinum => println!("Platinum"),
+   }
+
+   let level2 = Level::Premium;
+   match level2 {
+      Level::Regular => println!("Regular"),
+      Level::Premium => println!("Premium"),
+      Level::Platinum => println!("Platinum"),
+   }
+
+   let level3 = Level::Platinum;
+   match level3 {
+      Level::Regular => println!("Regular"),
+      Level::Premium => println!("Premium"),
+      Level::Platinum => println!("Platinum"),
+   }
+
+}
+
+enum Payment {
+   // card number
+   CreditCard(String),
+   // bank name akun number
+   BankTransfer(String, String),
+   // ewallet number, ewallet name
+   EWallet(String, String),
+   
+}
+
+impl Payment {
+   fn pay(&self, amount: u32) {    
+    
+      match self {
+      Payment::CreditCard(card_number) => {
+         println!("Paying with card number {} amount {}", card_number ,amount);
+      },
+      Payment::BankTransfer(bank_name, account_number) => {
+         println!("Paying with bank transfer {} dan account number {} amount {}", bank_name, account_number, amount);
+      },
+      Payment::EWallet(ewallet_number, ewallet_name) => {
+         println!("Paying with ewallet {} dan ewallet name {} amount {}", ewallet_number, ewallet_name, amount);
+      },
+      }
+   }
+}
+
+
+#[test]
+fn test_payment_method() {
+   let payment1 = Payment::CreditCard(String::from("1234567890"));
+   payment1.pay(1000);
+
+   let payment2 = Payment::BankTransfer(String::from("Bank BRI"), String::from("1234567890"));
+   payment2.pay(1000);
+
+   let payment3 = Payment::EWallet(String::from("1234567890"), String::from("eWallet"));
+   payment3.pay(1000);
+  
+}
+
+
+#[test]
+fn test_payment() {
+   let payment1 = Payment::CreditCard(String::from("1234567890"));
+
+   match payment1 {
+      Payment::CreditCard(card_number) => println!("Credit Card: {}", card_number),
+      Payment::BankTransfer(bank_name, account_number) => println!("Bank Transfer: {} {}", bank_name, account_number),
+      Payment::EWallet(ewallet_number, ewallet_name) => println!("eWallet: {} {}", ewallet_number, ewallet_name),
+   }
+
+   let payment2 = Payment::BankTransfer(String::from("Bank BRI"), String::from("1234567890"));
+   match payment2 {
+      Payment::CreditCard(card_number) => println!("Credit Card: {}", card_number),
+      Payment::BankTransfer(bank_name, account_number) => println!("Bank Transfer: {} {}", bank_name, account_number),
+      Payment::EWallet(ewallet_number, ewallet_name) => println!("eWallet: {} {}", ewallet_number, ewallet_name),
+   }
+
+   let payment3 = Payment::EWallet(String::from("1234567890"), String::from("eWallet"));
+   match payment3 {
+      Payment::CreditCard(card_number) => println!("Credit Card: {}", card_number),
+      Payment::BankTransfer(bank_name, account_number) => println!("Bank Transfer: {} {}", bank_name, account_number),
+      Payment::EWallet(ewallet_number, ewallet_name) => println!("eWallet: {} {}", ewallet_number, ewallet_name),
+   }
+
+}
+
+#[test]
+fn test_enum_pattern_matching() {
+   
+   let level = Level::Regular;
+   
+   match level {
+      Level::Regular => println!("Regular"),
+      Level::Premium => println!("Premium"),
+      Level::Platinum => println!("Platinum"),
+   }
+  
+}
+
+#[test]
+fn test_match_value(){
+   
+   let name: &str = "Audyaa";
+
+   match name {
+      "Audy" => println!("Audy"),
+      "Wiyono"=> println!("Wiyono"),
+      other  => println!("hello {}",other),
+   }  
+}
+
+#[test]
+fn test_multiple_patterns(){
+   let name = "audy";
+
+   match name {
+       "audy" | "budi" => {
+         println!("Hello Bos")
+       }
+       other   => {
+         println!("hello {} ", other)
+       }
+   }
+}
+
+#[test]
+fn test_range_pattern(){
+
+   let value = 100;
+
+   match value {
+       75..=100 => {
+         println!("Good");
+       }
+       50..=74 => {
+         println!("Not Bad");
+       }
+       0..=49 => {
+         println!("Bad");
+       }
+       _ => {
+         println!("Unknown");
+       }
+   }
+}
+
+#[test]
+fn test_struct_pattern_matching() {
+   
+   let point  = GeoPoint(-6.200000,106.816666);
+   //let point = GeoPoint(1.0, 0.0);
+
+   match point {
+      GeoPoint(0.0, 0.0) => {
+         println!("Data Kosong");
+      }
+      GeoPoint(lat, 0.0) => {
+         println!("{:.6} ", lat);
+      }
+      GeoPoint(0.0, lng) => {
+         println!("data lng : {:.6} ", lng); 
+      }  
+      GeoPoint(lat, lng) => {
+         println!("{:.6} dan {:.6} ", lat, lng);
+      }
+    
+   }
+
+}
+
+#[test]
+fn test_destructuring_struct_patterns(){
+   
+   let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::new(),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+
+   match person {
+      Person { first_name, last_name, ..} => {
+         println!("nama depan : {} dan nama belakang : {}", first_name, last_name);
+      }
+   }
+   
+}
+
+#[test]
+fn test_ignore_values(){
+   
+   let point = GeoPoint(-6.200000,106.816666);
+
+   match point {
+       GeoPoint(lat, _) => {
+           println!(" lat : {} ", lat);
+       }
+     
+   }
+
+   let value = 100;
+
+   match value {
+       75..=100 => {
+         println!("Good");
+       }
+       50..=74 => {
+         println!("Not Bad");
+       }
+       0..=49 => {
+         println!("Bad");
+       }
+       _ => {
+         println!("Unknown");
+       }
+   }
+
+}
+
+#[test]
+fn test_match_expression(){
+
+   let value = 2;
+
+   let result = match value {
+       1 => "One",
+       2 => "Two",
+       3 => "Three",
+       _ => "Other",
+   };
+
+   println!("{}", result);
+   
 }
