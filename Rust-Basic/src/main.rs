@@ -64,6 +64,67 @@ fn main() {
    println!("first_name = {}", first_name);
    println!("last_name = {}", last_name);
 
+   // test reference full name
+
+   
+   let first_name = String::from("Audy");
+   let last_name = String::from("Wiyono");
+
+   let name = reference_full_name(&first_name, &last_name);
+   
+   println!("name = {}", name);
+   println!("first_name = {}", first_name);
+   println!("last_name = {}", last_name);
+
+   // change value test
+
+   let mut value = String::from("Audyari");
+
+   change_value(&mut value);
+
+   // value.push_str("ASIK");
+
+   print!("{}",value);
+
+   // mengakses struct person
+
+   let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   println!("{} ",person.first_name);
+   println!("{} ",person.middle_name);
+   println!("{} ",person.last_name);
+   println!("{} ",person.age);
+
+   // test print_person
+
+   let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   print_person(&person);
+
+   // memanggil struct_function
+
+   struct_function();
+
+   // memanggil tuple struct
+
+   let geo_point = GeoPoint(-6.200000,106.816666);
+   println!("{} {}", geo_point.0, geo_point.1);
+
+   // struct nothing
+
+   let _nothing1 = Nothing;
+   let _nothing2 = Nothing;
+
 }
 
 #[test]  
@@ -784,7 +845,7 @@ fn full_name(first_name: String, last_name: String) -> String {
    format!("{} {}", first_name, last_name)   
 }
 
-fn full_name_tanpa_clone(first_name: String, last_name: String) -> (String, String, String) {
+fn full_name_tanpa_clone(first_name: String, last_name: String) -> (String, String, String) { // memori masuk ke heap tipe data tuple
 
    let full_name_tanpa_clone = format!("{} {}", first_name, last_name);
 
@@ -813,9 +874,178 @@ fn test_full_name_tanpa_clone() {
   let last_name = String::from("Wiyono");
 
   let (first_name, last_name, name) = full_name_tanpa_clone(first_name.clone(), last_name.clone());
-  println!("name = {}", name);
 
+  println!("name = {}", name);
   println!("first_name = {}", first_name);
   println!("last_name = {}", last_name);
   
+}
+
+
+fn reference_full_name(first_name: &String, last_name: &String) -> String {
+   let name =  format!("{} {}", first_name, last_name);
+   return name;
+}
+
+#[test]
+fn test_reference_full_name() {
+
+   let first_name = String::from("Audy");
+   let last_name = String::from("Wiyono");
+
+   let name = reference_full_name(&first_name, &last_name);
+
+   println!("name = {}", name);
+   println!("first_name = {}", first_name);
+   println!("last_name = {}", last_name);
+}
+
+fn change_value(value: &mut String) {
+   value.push_str(" test");
+}
+
+#[test]
+fn test_change_value(){
+   let mut value = String::from("Audyari");
+
+   change_value(&mut value);
+
+   // value.push_str("ASIK");
+
+   print!("{}",value);
+}
+
+#[test]
+fn test_slice(){
+   let array = [1,2,3,4,5,6,7,8,9,10]; // memory di simpan di stack
+   
+   let slice1 = &array[..];             
+
+   println!("array = {:?}", array);
+   println!("slice1 = {:?}", slice1);
+
+   let slice2 = &array[0..5];             
+   println!("slice2 = {:?}", slice2);
+
+   let slice3 = &array[5..];              
+   println!("slice3 = {:?}", slice3);
+
+   let test = slice2;                    
+   println!("test = {:?}", test);
+  
+}
+
+
+#[test]
+fn string_slice() {
+   
+   let name = String::from("Audyari wiyono"); // memori di simpan di heap
+   let first_name = &name[0..7];   
+
+   println!("first_name = {}", first_name);
+
+   let last_name = &name[8..14];                // memori di simpan di stack
+   println!("last_name = {}", last_name);
+ 
+
+}
+
+struct Person {
+   first_name: String,
+   middle_name: String,
+   last_name: String,
+   age: u32,
+}
+
+#[test]
+fn test_struct_person() {
+ 
+   let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   println!("{} ",person.first_name);
+   println!("{} ",person.middle_name);
+   println!("{} ",person.last_name);
+   println!("{} ",person.age);
+
+}
+
+fn print_person(person: &Person) {
+   
+   println!("{} ",person.first_name);
+   println!("{} ",person.middle_name);
+   println!("{} ",person.last_name);
+   println!("{} ",person.age);
+}
+
+#[test]
+fn test_print_person() {
+   
+   let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   print_person(&person);
+
+}
+
+fn struct_function() {
+   
+   let first_name = String::from("Audy"); // memori masuk ke heap
+   let last_name = String::from("Wiyono");
+   let middle_name = String::from("Wiyono");
+   let age = 22;
+
+   let person = Person {
+      first_name: first_name.clone(),        // memori masuk ke heap data di clone
+      middle_name: middle_name.clone(),
+      last_name: last_name.clone(),
+      age: age,
+   };
+
+   println!("+++++Struct Syntax+++++++++++++");
+
+   print_person(&person);
+
+   println!("+++++Struct Update Syntax+++++++++++++"); 
+
+   let person2:Person = Person { ..person};
+
+   print_person(&person2);
+
+   println!("+++++++ Partial Struct Update Syntax ++++++++++++++++++++++++");
+
+   let person3 = Person {
+      first_name: person2.first_name.clone(),
+      middle_name: person2.middle_name.clone(),
+      last_name: person2.last_name.clone(),
+      age: age,
+   };
+
+   print_person(&person3);
+
+}
+
+struct GeoPoint(f64, f64);
+
+#[test]
+fn tuple_struct(){
+   let geo_point = GeoPoint(-6.200000,106.816666);
+   println!("{} {}", geo_point.0, geo_point.1);
+}
+
+struct Nothing;
+
+#[test]
+fn test_nothing() {
+   let _nothing1 = Nothing;
+   let _nothing2 = Nothing;
+
 }
