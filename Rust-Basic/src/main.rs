@@ -13,9 +13,60 @@ fn main() {
     // Stack dan Heap
     function_a();
     function_b();
+
+    // memanggil function
+    say_hello();
+
+    // memanggil function with parameters
+    say_goodbye("Audy", "Wiyono");
+    say_goodbye("Asep", "Johar");
+
+    // memanggil factorial
+
+    let result = factorial_loop(5);
+    println!("result = {}", result);
+  
+    let result = factorial_loop(-10);
+    println!("result = {}", result);
+
+
+    // memanggil recursive function
+    print_text(String::from("Hello Audyari"), 3);
+
+    // memanggil factorial recursive
+    let result = factorial_recursive(5);
+    println!("result = {}", result);
+
+
+    // test print number
+
+    let number = 10;
+    print_number(number); 
+    println!("number = {}", number);   
+
+    
+   // test hi 
+
+   let name = String::from("Audy");
+   hi(name.clone());
+   println!("name = {}", name);
+
+
+   // test full name
+
+   let name = full_name(String::from("Audy"), String::from("Wiyono"));
+   println!("name = {}", name);
+
+   // test full name tanpa clone
+
+   let (first_name, last_name, name) = full_name_tanpa_clone(String::from("Audy"), String::from("Wiyono"));
+   println!("name = {}", name);
+   println!("first_name = {}", first_name);
+   println!("last_name = {}", last_name);
+
 }
 
-#[test]
+#[test]  
 fn test_main() {
 
     //membuat main test 
@@ -23,6 +74,8 @@ fn test_main() {
     println!("Hello, world!");
     println!("Hello, Audy!");
     println!("Hello, Wira!");
+
+
 }
 
 #[test]
@@ -401,9 +454,8 @@ fn test_ownership_rules() {
    let a = 10; // a bisa diakses mulai disini 
    
    {// b tidak bisa diskses disini, helun dideKlarasikan 
-      let b = 20; // b bisa diakses mulai disini |
+      let b = 20; // b bisa diakses mulai disini 
       println!("{}", b); 
-   
    } // scope b selesai, b dihapus, b tidak bisa diakses lagi 
      
    println! ("{}", a); 
@@ -443,4 +495,327 @@ fn test_ownership_clone() {
    
    println!("name1 = {}, name2 = {}", name1, name2);
    
+}
+
+// cargo test test_if_expression -- --exact --nocapture
+#[test]
+fn test_if_expression() {
+   
+   let value = 9;
+
+   if value >= 8{
+      println!("value >= 8 = {}", value); 
+   } else if value == 6 {
+      println!("value = 6 = {}", value);
+   } else if value == 3 {
+      println!("value = 3 = {}", value);
+   } else {
+      println!("value = {}", value);
+   }
+   
+}
+
+#[test]
+fn test_let_statement() {
+   let value = 9;
+   let result: &str;
+
+   if value >= 8 {
+      result = "value >= 8";
+   } else {
+      result = "value < 8";
+   }
+   println!("{}", result);
+}
+
+// cargo test test_if_let_statement -- --exact --nocapture
+#[test]
+fn test_if_let_statement() {
+   let value: i32 = 9;
+   let result: &str = if value >=8 {
+      "value >= 8"
+   } else {
+      "value < 8"
+   };
+   println!("{}", result);
+}
+
+#[test]
+fn test_if_let_statement_string() {
+   
+   let value: i32 = 9;
+   let result: String = if value >=8 {
+      "value >= 8".to_string()
+   } else {
+      "value < 8".to_string()
+   };
+   println!("{}", result);
+
+}
+
+#[test]
+fn test_loop() {
+
+   let mut counter = 0; 
+   loop { 
+      counter += 1; 
+
+      if counter > 10 { 
+         break; 
+      } 
+
+      if counter % 2 == 0 { 
+         continue; 
+      } 
+
+      println! ("Counter: {}", counter); 
+   } 
+
+   println! ("Counter: {}", counter);
+   
+}
+
+#[test]
+fn loop_return_value() {
+   
+   let mut counter: i32 = 0; 
+  
+   let result: i32 = loop { 
+      counter += 1; 
+      println!("counter = {}", counter);
+
+      if counter > 10 { 
+         println!("counter di if = {}", counter);
+         break counter * 2; 
+      } 
+   };
+   println!("result = {}", result);
+}
+
+#[test]
+fn loop_label() {
+   
+    let mut number = 1;
+
+    'outer: loop {
+        let mut i = 1;
+
+        loop {
+            if number > 10 {
+                break 'outer;
+            }
+
+            println!("{} x {} = {}", number, i, number * i);
+
+            i += 1;
+
+            if i > 10 {
+                break;
+            }
+        }
+
+        number += 1;
+    }
+}
+
+// cargo test test_while_loop -- --exact --nocapture
+#[test]
+fn test_while_loop() {
+   
+   let mut counter = 0;
+   while counter <= 10 {
+
+      if counter % 2 == 0 {
+         println!("counter : {}", counter);
+      }
+
+      counter += 1;
+
+   }
+}
+
+// cargo test test_for_loop -- --exact --nocapture
+#[test]
+fn test_for_loop() {
+
+   println!("++++++++Menggunakkan While Loop++++++++++++++++++");
+   
+   let array = ['a', 'b', 'c', 'd', 'e']; // memory masuk ke stack
+   let mut index = 0; // memory masuk ke stack
+
+   // while loop
+   while index < array.len() { // memory masuk ke stack
+      println!("{}", array[index]);
+      index += 1;
+   }
+
+   println!("++++++++Menggunakkan For Loop++++++++++++++++++");
+
+   // for loop
+   for item in array { // memory masuk ke heap
+      println!("{}", item); // memory masuk ke stack
+   }
+
+   println!("+++++Menggunakkan Range++++++++++++++++++++");
+
+   // range
+   let range = 0..5; // memory masuk ke heap
+  
+   println!("start = {}", range.start); // memory masuk ke stack
+   println!("end = {}", range.end); // memory masuk ke stack
+
+   for i in range {  // memory masuk ke stack
+     println!("{}", array[i]);  // memory masuk ke stack
+   }
+
+   println!("+++++++Menggunakkan Range Inclusive++++++++++++++++++");
+
+   // menggunakkan range inclusive
+   let range = 0..=4; // memory masuk ke heap
+   for i in range {
+     println!("{}", array[i]);
+   }
+
+}
+
+fn say_hello() {
+   println!("Hello");
+}
+
+fn say_goodbye(first_name: &str, last_name: &str) { // memori masuk ke heap
+   println!("{} {}", first_name, last_name); // memori masuk ke stack
+}
+
+#[test]
+fn test_function() { // memori masuk ke heap
+   say_hello(); // memori masuk ke stack
+}
+
+#[test]
+fn test_function_with_parameters() { // memori masuk ke heap
+   say_goodbye("Audy", "Wiyono"); // memori masuk ke stack
+   say_goodbye("Asep", "Johar"); // memori masuk ke stack
+}
+
+fn factorial_loop(n: i32) -> i32 {
+  
+  if n  < 1 {
+   return 0;
+  }
+
+  let mut result = 1;
+ 
+  for i in 1..=n { // memory masuk ke stack
+    result *= i;
+  }
+  result
+
+}
+
+#[test]
+fn test_factorial_loop() {
+  let result = factorial_loop(5);
+  println!("result = {}", result);
+
+  let result = factorial_loop(-10);
+  println!("result = {}", result);
+}
+
+fn print_text(value: String, times: u32) {
+
+   // recursive function   
+  if times == 0 {
+   return;
+  }else{
+   println!("{}", value); 
+  }
+
+  print_text(value, times - 1);
+}
+
+#[test]
+fn test_print_text() {
+   print_text(String::from("Hello Audyari"), 3);
+}
+
+fn factorial_recursive(n: u32) -> u32 {
+  if n == 1 {
+    return 1;
+  }
+  n * factorial_recursive(n - 1)
+}
+
+#[test]
+fn test_factorial_recursive() {
+  let result = factorial_recursive(5);
+  println!("result = {}", result);
+}
+
+ 
+fn print_number(number: i32){ // memori masuk ke stack
+   println!("number = {}", number); // memori masuk ke stack
+}
+
+fn hi(name:String){ // memori masuk ke heap
+   println!("Hi {}", name); // memori masuk ke stack
+}
+
+
+// ownership function
+#[test]
+fn ownership_function() {
+   
+   // test print number
+
+   let number = 10;
+   print_number(number); //number dilakukan copy
+   println!("number = {}", number);
+
+   // test hi 
+
+   let name = String::from("Audy");
+
+   hi(name.clone()); // name di pindahkan ke hi
+   println!("name = {}", name);
+
+}
+
+fn full_name(first_name: String, last_name: String) -> String {
+   format!("{} {}", first_name, last_name)   
+}
+
+fn full_name_tanpa_clone(first_name: String, last_name: String) -> (String, String, String) {
+
+   let full_name_tanpa_clone = format!("{} {}", first_name, last_name);
+
+   (first_name, last_name, full_name_tanpa_clone)
+
+}
+
+#[test]  
+fn test_full_name() {
+
+  let first_name = String::from("Audy");
+  let last_name = String::from("Wiyono");
+
+  let name = full_name(first_name.clone(), last_name.clone());
+  println!("name = {}", name);
+
+  println!("first_name = {}", first_name);
+  println!("last_name = {}", last_name);
+  
+}
+
+#[test]
+fn test_full_name_tanpa_clone() {
+
+  let first_name = String::from("Audy");
+  let last_name = String::from("Wiyono");
+
+  let (first_name, last_name, name) = full_name_tanpa_clone(first_name.clone(), last_name.clone());
+  println!("name = {}", name);
+
+  println!("first_name = {}", first_name);
+  println!("last_name = {}", last_name);
+  
 }
