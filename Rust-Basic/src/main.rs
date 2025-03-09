@@ -125,6 +125,22 @@ fn main() {
    let _nothing1 = Nothing;
    let _nothing2 = Nothing;
 
+   // memanggil methode 
+
+   let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+    };
+    
+    person.say_hello("Audy");
+
+    // implementasi geo point
+
+    let geo_point = GeoPoint::new(-6.200000,106.816666);
+    println!("{} {}", geo_point.0, geo_point.1);
+
 }
 
 #[test]  
@@ -950,12 +966,7 @@ fn string_slice() {
 
 }
 
-struct Person {
-   first_name: String,
-   middle_name: String,
-   last_name: String,
-   age: u32,
-}
+
 
 #[test]
 fn test_struct_person() {
@@ -1033,7 +1044,7 @@ fn struct_function() {
 
 }
 
-struct GeoPoint(f64, f64);
+
 
 #[test]
 fn tuple_struct(){
@@ -1048,4 +1059,46 @@ fn test_nothing() {
    let _nothing1 = Nothing;
    let _nothing2 = Nothing;
 
+}
+
+struct Person {
+   first_name: String,
+   middle_name: String,
+   last_name: String,
+   age: u32,
+}
+
+impl Person {
+   fn say_hello(&self , name: &str) {
+      println!("Hello, {} {} {}", name, self.middle_name, self.last_name);
+   }
+   
+}
+
+
+#[test]
+fn test_method() {
+  let person = Person {
+    first_name: String::from("Audy"),
+    middle_name: String::from("Wiyono"),
+    last_name: String::from("Wiyono"),
+    age: 22,
+  };
+  
+  person.say_hello("Audy");
+}
+
+
+struct GeoPoint(f64, f64);
+
+impl GeoPoint {
+   fn new(lat: f64, lng: f64) -> GeoPoint {
+      GeoPoint(lat, lng)
+   }
+}
+
+#[test]
+fn test_geo_point() {
+   let geo_point = GeoPoint::new(-6.200000,106.816666);
+   println!("{} {}", geo_point.0, geo_point.1);
 }
