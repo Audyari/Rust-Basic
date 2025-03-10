@@ -193,6 +193,41 @@ fn main() {
 
     let payment1 = Payment::CreditCard(String::from("1234567890"));
     payment1.pay(1000);
+
+    // memanggil ALias
+
+    let customer = Customer {
+      id: String::from("1234567890"),
+      age: 22,
+      name: String::from("Audy Wiyono"),
+    };
+   
+    println!("{}", customer.name);
+    println!("{}", customer.age);
+    println!("{}", customer.id);
+
+
+    // cara memanggil model
+
+    let user = modul::User { 
+      first_name: String::from("Audy"),
+      last_name: String::from("Wiyono"),
+      username: String::from("audy"),
+      email: String::from("audy@audy.com"),
+      age: 22,
+    };
+   
+    user.say_hello("Audy");  
+
+    // cara memanggil modul as
+     
+    first_say_hello();
+    second_say_hello();
+   
+   // memanggil modul test
+
+   first_say_hello_test();
+   second_say_hello_test();
     
 
 }
@@ -1394,7 +1429,7 @@ fn test_ignore_values(){
 #[test]
 fn test_match_expression(){
 
-   let value = 2;
+   let value = 4;
 
    let result = match value {
        1 => "One",
@@ -1406,3 +1441,110 @@ fn test_match_expression(){
    println!("{}", result);
    
 }
+
+type Age = u8;
+type IdentityNumber = String;
+
+struct Customer {
+  id : IdentityNumber,
+  age: Age,
+  name: String,
+}
+
+#[test]
+fn test_type_alias() {
+
+ let customer = Customer {
+   id: String::from("1234567890"),
+   age: 22,
+   name: String::from("Audyari Wiyono"),
+ };
+
+ println!("{}", customer.name);
+ println!("{}", customer.age);
+ println!("{}", customer.id);
+
+ match customer {
+   Customer { id, age: 22, name: n } => {
+     println!("Hello, my name is {} and my id is {}", n, id);
+   }
+   _ => {
+     println!("I don't know who you are");
+   }
+ }
+
+}
+
+
+pub mod modul {
+
+   pub struct User{
+      pub first_name: String,
+      pub last_name: String,
+      pub username: String,
+      pub email: String,
+      pub age: u8,
+   }
+
+   impl User {
+      pub fn say_hello(&self, name: &str) {
+         println!("Hello, {} My Name is {} {}", name, self.first_name, self.last_name);
+      }
+   }  
+
+}
+
+#[test]
+fn test_method_modul() {
+   
+ let user = modul::User { 
+   first_name: String::from("Audy"),
+   last_name: String::from("Wiyono"),
+   username: String::from("audy"),
+   email: String::from("audy@audy.com"),
+   age: 22,
+ };
+
+ user.say_hello("Audy");  
+}
+
+
+mod first{
+   pub fn say_hello() {
+      println!("say hello from first module");
+   }
+}
+
+mod second{
+   pub fn say_hello() {
+      println!("say hello from second module");
+   }
+}
+
+
+use first::say_hello as first_say_hello;
+use second::say_hello as second_say_hello;
+
+#[test]
+fn test_method_modul_second() {
+  first_say_hello();
+  second_say_hello();
+}
+
+
+
+mod first_test;
+mod second_test;
+
+use first_test::say_hello as first_say_hello_test;
+use second_test::say_hello as second_say_hello_test;
+
+#[test]
+fn test_method_modul_second_test() {
+  first_say_hello_test();
+  second_say_hello_test();
+}
+
+
+
+
