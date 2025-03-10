@@ -228,7 +228,62 @@ fn main() {
 
    first_say_hello_test();
    second_say_hello_test();
-    
+
+   first_test::second::third::say_hello();
+
+
+   // memanggil trait
+
+   let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   println!("{}", person.say_hello_trait());
+   println!("{}", person.say_hello_to("Audy"));
+   println!("{}", person.hello());
+
+    // pemanggilan trait 2 
+
+    let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   say_hello_trait(&person, "Audy");
+
+   // pemanggilan trait 3
+
+   let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   hello_and_goodbye(&person);
+
+   // pemanggilan trait 4
+
+   let person = create_person(String::from("Audy"));
+   println!("{}", person.good_bye());
+   println!("{}", person.good_bye_to("Audy"));
+
+
+   // memanggil traid 6
+
+   let person = Person {
+      first_name: String::from("Audyaaa"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   person.say();
 
 }
 
@@ -240,7 +295,6 @@ fn test_main() {
     println!("Hello, world!");
     println!("Hello, Audy!");
     println!("Hello, Wira!");
-
 
 }
 
@@ -1521,7 +1575,6 @@ mod second{
    }
 }
 
-
 use first::say_hello as first_say_hello;
 use second::say_hello as second_say_hello;
 
@@ -1531,20 +1584,209 @@ fn test_method_modul_second() {
   second_say_hello();
 }
 
-
-
 mod first_test;
 mod second_test;
+mod third_test;
 
 use first_test::say_hello as first_say_hello_test;
 use second_test::say_hello as second_say_hello_test;
 
 #[test]
 fn test_method_modul_second_test() {
-  first_say_hello_test();
-  second_say_hello_test();
+  //first_say_hello_test();
+  //second_say_hello_test();
+
+  first_test::second::third::say_hello();
 }
 
+
+trait CanSayHello {
+   fn hello(&self) -> String {
+      String::from("Hello")
+  }
+  fn say_hello_trait(&self) -> String;
+  fn say_hello_to(&self, name: &str) -> String;
+}
+
+// struct Person {
+//    first_name: String,
+//    middle_name: String,
+//    last_name: String,
+//    age: u32,
+// }
+
+// impl Person {
+//    fn say_hello(&self , name: &str) {
+//       println!("Hello, {} {} {}", name, self.middle_name, self.last_name);
+//    }
+   
+// }
+
+
+impl CanSayHello for Person {
+
+   fn say_hello_trait(&self) -> String {
+      format!("Hello, my name is {}", self.first_name)
+   }
+
+   fn say_hello_to(&self, name: &str) -> String {
+      format!("Hello {}, my name is {}", name, self.first_name)
+   }
+
+//    fn hello(&self) -> String {
+//       String::from("Hello")
+//   }
+}
+
+#[test]
+fn test_trait() {
+  
+   let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   println!("{}", person.say_hello_trait());
+   println!("{}", person.say_hello_to("Audy"));
+   println!("{}", person.hello());
+   person.say_hello("Audy");
+}
+
+
+fn say_hello_trait(person: &impl CanSayHello, name: &str) {
+   println!("{}", person.say_hello_trait());
+
+   println!("{}",person.say_hello_to(name));
+}
+
+#[test]
+fn test_trait_2() {
+
+   let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   say_hello_trait(&person, "Audy");
+}
+
+
+trait CanSayGoodbye {
+   fn good_bye(&self) -> String;
+   fn good_bye_to(&self, name: &str) -> String;
+}
+
+impl CanSayGoodbye for Person {
+   fn good_bye(&self) -> String {
+     format!("Goodbye, my name is {}", self.first_name)
+   }
+   
+   fn good_bye_to(&self, name: &str) -> String {
+      format!("Goodbye {}, my name is {}", name, self.first_name)
+   }
+}
+
+fn hello_and_goodbye(person: &(impl CanSayHello + CanSayGoodbye)) {
+  println!("{}", person.say_hello_trait());
+  println!("{}", person.good_bye());
+  println!("{}", person.good_bye_to("Audy"));
+}
+
+#[test]
+fn test_trait_3() {
+   let person = Person {
+      first_name: String::from("Audy"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   hello_and_goodbye(&person);
+}
+
+
+struct SimplePerson {
+   name: String,
+}
+
+impl CanSayGoodbye for SimplePerson {
+   fn good_bye(&self) -> String {
+      format!("Goodbye, my name is {}", self.name)
+   }
+   
+   fn good_bye_to(&self, name: &str) -> String {
+      format!("Goodbye {}, my name is {}", name, self.name)
+   }
+}
+
+fn create_person(name: String) -> impl CanSayGoodbye {
+   if name.is_empty() {
+      return SimplePerson { name: String::from("Unknown") };
+   }
+
+   SimplePerson { name }
+
+}  
+
+#[test]
+fn test_trait_4() {
+   let person = create_person(String::from("Audy"));
+   println!("{}", person.good_bye());
+   println!("{}", person.good_bye_to("Audy"));
+}
+
+#[test]
+fn test_trait_5() {
+   
+   let person = Person {
+      first_name: String::from("Audyaaa"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   person.say_hello("Audy");
+   println!("++++++++++++++++++++++");
+   let result = CanSayHello::say_hello_trait(&person);
+   println!("{}", result);
+
+}
+
+trait  CanSay: CanSayHello + CanSayGoodbye {
+
+   // sekarang kita bisa implementasi CanSay
+   // kita harus mengimplementasikan  CanSayHello dan CanSayGoodBye   
+   fn say(&self){
+      
+      println!("{}", self.say_hello_trait());
+      println!("{}", self.good_bye());
+
+   }
+}
+
+impl CanSay for Person {
+   
+   fn say(&self) {
+      println!("{}", self.say_hello_trait());
+      println!("{}", self.good_bye());
+   }
+}
+
+#[test]
+fn test_trait_6() {
+   let person = Person {
+      first_name: String::from("Audyaaa"),
+      middle_name: String::from("Wiyono"),
+      last_name: String::from("Wiyono"),
+      age: 22,
+   };
+   
+   person.say();
+}
 
 
 
